@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chính sách - Scentura</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /*================ RESET & BASIS ================*/
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fbf9f4;
+            color: #2c3e2e;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /*================ HEADER SALE ================*/
+        .header_sale {
+            width: 100%;
+            height: 45px;
+            background: #0e2b19;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding: 0 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .header_sale h3 {
+            margin: 0;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .header_sale button {
+            background: #e2c076;
+            color: #0e2b19;
+            border: none;
+            padding: 6px 14px;
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .header_sale button:hover {
+            background: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        /*================ NAVBAR ================*/
+        .navbar {
+            width: 100%;
+            height: 80px;
+            position: fixed;
+            top: 45px;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            background: rgba(251, 249, 244, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(30, 63, 34, 0.05);
+        }
+
+        .navbar.scrolled {
+            height: 70px;
+            top: 0;
+            background: rgba(30, 63, 34, 0.98);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar_container {
+            width: 90%;
+            max-width: 1400px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: #1e3f22;
+            text-decoration: none;
+            letter-spacing: 3px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar.scrolled .brand {
+            color: #ffffff;
+        }
+
+        .nav_menu {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .nav_menu a {
+            text-decoration: none;
+            color: #1e3f22;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .navbar.scrolled .nav_menu a {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .nav_menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #e2c076;
+            transition: width 0.3s ease;
+        }
+
+        .nav_menu a:hover::after,
+        .nav_menu a.active::after {
+            width: 100%;
+        }
+
+        .nav_menu a:hover {
+            color: #e2c076;
+        }
+
+        .navbar.scrolled .nav_menu a:hover {
+            color: #ffffff;
+        }
+
+        /*================ MAIN CONTENT ================*/
+        .main_content {
+            padding: 160px 20px 80px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            flex: 1;
+            width: 100%;
+        }
+
+        .policy_header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .policy_header h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 40px;
+            color: #1e3f22;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .policy_header p {
+            font-family: 'Lora', Georgia, serif;
+            font-style: italic;
+            color: #666;
+            font-size: 16px;
+        }
+
+        /*================ POLICY ROW LAYOUT ================*/
+        .policy_row_section {
+            padding: 60px 0;
+            border-bottom: 1px dotted rgba(30, 63, 34, 0.35);
+        }
+
+        .policy_row_section:last-of-type {
+            border-bottom: none;
+            padding-bottom: 40px;
+        }
+
+        .policy_row {
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+            gap: 60px;
+        }
+
+        .policy_row.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .policy_text_col {
+            flex: 1.1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .policy_text_col h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 24px;
+            color: #ffffff;
+            background: #1e3f22;
+            padding: 12px 20px;
+            margin-bottom: 24px;
+            font-weight: 700;
+            text-align: center;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(30, 63, 34, 0.15);
+        }
+
+        .policy_bold_title {
+            font-family: 'Lora', Georgia, serif;
+            font-size: 17px;
+            color: #1e3f22;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .policy_text_col p, .policy_text_col ul {
+            font-family: 'Lora', Georgia, serif;
+            font-size: 15px;
+            color: #4a5c4d;
+            line-height: 1.75;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .policy_text_col ul {
+            padding-left: 20px;
+        }
+
+        .policy_text_col li {
+            margin-bottom: 8px;
+        }
+
+        .policy_text_col em {
+            color: #1e3f22;
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .policy_img_col {
+            flex: 0.9;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 1.3;
+        }
+
+        .policy_img_col img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover !important;
+            transition: transform 0.5s ease;
+        }
+
+        .policy_img_col:hover img {
+            transform: scale(1.03);
+        }
+
+        @media (max-width: 992px) {
+            .policy_row {
+                flex-direction: column !important;
+                gap: 35px;
+            }
+            .policy_row.reverse {
+                flex-direction: column !important;
+            }
+            .policy_img_col {
+                width: 100%;
+                aspect-ratio: 1.6;
+            }
+        }
+
+        /*================ SUPPORT BEIGE BOX ================*/
+        .support_box_beige {
+            background: #fbf9f4;
+            border: 2px dashed #d6c29a;
+            border-radius: 12px;
+            padding: 45px 30px;
+            text-align: center;
+            margin-top: 50px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.02);
+        }
+
+        .support_box_beige h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 26px;
+            color: #1e3f22;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .support_box_beige p {
+            font-family: 'Lora', Georgia, serif;
+            font-size: 16px;
+            color: #4a5c4d;
+            margin-bottom: 24px;
+        }
+
+        .support_btn {
+            display: inline-block;
+            background: #1e3f22;
+            color: #ffffff;
+            padding: 14px 36px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 13.5px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .support_btn:hover {
+            background: #e2c076;
+            color: #0e2b19;
+            transform: translateY(-2px);
+        }
+
+        /*================ FOOTER ================*/
+        .footer{
+            position:relative;
+            background:#1e3f22;
+            color:#fff;
+            padding:80px 0 30px;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+        
+        .watermark{
+            position:absolute;
+            right:-50px;
+            bottom:-20px;
+            font-size:180px;
+            font-weight:bold;
+            letter-spacing:12px;
+            color:white;
+            opacity:.03;
+            pointer-events:none;
+            user-select:none;
+        }
+
+        .footer_container{
+            width:90%;
+            max-width:1400px;
+            margin:auto;
+            display:grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap:70px;
+        }
+
+        .footer_brand h2{
+            font-size:38px;
+            letter-spacing:2px;
+            margin-bottom:20px;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .footer_brand p{
+            color:rgba(255,255,255,.8);
+            line-height:1.8;
+            font-size: 14px;
+        }
+
+        .footer_contact{
+            margin-top:30px;
+            font-size: 14px;
+        }
+
+        .footer_contact p{
+            margin-bottom:12px;
+        }
+
+        .footer_column h3{
+            margin-bottom:25px;
+            font-size:22px;
+            font-family: 'Lora', Georgia, serif;
+        }
+
+        .footer_column a{
+            display:block;
+            color:rgba(255,255,255,.75);
+            text-decoration:none;
+            margin-bottom:16px;
+            transition:.3s;
+            font-size: 14px;
+        }
+
+        .footer_column a:hover{
+            color:#d6c29a;
+            transform:translateX(5px);
+        }
+
+        .footer_bottom{
+            width:90%;
+            max-width:1400px;
+            margin:60px auto 0;
+            border-top:1px solid rgba(255,255,255,.15);
+            padding-top:25px;
+            text-align:center;
+            color:rgba(255,255,255,.6);
+            font-size: 13px;
+        }
+
+        .payment{
+            display:flex;
+            gap:12px;
+            flex-wrap:wrap;
+            margin-top:18px;
+        }
+
+        .payment img{
+            width:50px;
+            padding:8px;
+            background:white;
+            border-radius:8px;
+            transition:.3s;
+        }
+
+        .payment img:hover{
+            transform:translateY(-4px);
+        }
+    </style>
+</head>
+<body>
+
+    <!---------------- HEADER SALE ---------------->
+    <div class="header_sale">
+        <h3>MUA CÀNG NHIỀU, ƯU ĐÃI CÀNG LỚN VỚI COMBO DEALS CỦA SCENTURA</h3>
+        <button>NHẬN ƯU ĐÃI</button>
+    </div>
+
+    <!---------------- NAVBAR ---------------->
+    <nav class="navbar">
+        <div class="navbar_container">
+            <!-- bên trái -->
+            <a href="index.html" class="brand">SCENTURA</a>
+
+            <!-- bên phải -->
+            <div class="nav_menu">
+                <a href="index.html">Trang chủ</a>
+                <a href="intro.html">Giới thiệu</a>
+                <a href="products.html">Sản phẩm</a>
+                <a href="policy.html" class="active">Chính sách</a>
+                <a href="contact.html">Liên hệ</a>
+                <a href="login.html" id="auth-nav-link">Đăng Nhập</a>
+            </div>
+        </div>
+    </nav>
+
+    <!---------------- policy_img ---------------->
+    <div>
+        <img src="images/policy_img.png" alt="policy_img">
+    </div>
+    <!---------------- MAIN CONTENT ---------------->
+    <main class="main_content">
+        <div class="policy_header">
+            <h1>Chính Sách Và Quy Định</h1>
+            <p>Thông tin chi tiết về các chính sách hoạt động của Scentura</p>
+        </div>
+
+        <!-- 1. Chính sách thanh toán -->
+        <section class="policy_row_section">
+            <div class="policy_row">
+                <div class="policy_img_col">
+                    <img src="images/policy_chinhsachthanhtoan.png" alt="Chính sách thanh toán">
+                </div>
+                <div class="policy_text_col">
+                    <h2>Chính sách thanh toán</h2>
+                    <!-- <p class="policy_bold_title">Một vài lựa chọn thuận tiện cho mỗi đơn hàng</p> -->
+                    
+                    <p>Scentura hỗ trợ các hình thức thanh toán sau:</p>
+                    
+                    <p><em>Thanh toán khi nhận hàng (COD)</em><br>
+                    Bạn thanh toán trực tiếp cho nhân viên giao hàng sau khi nhận đơn. Đơn hàng sẽ được xử lý sau khi Scentura xác nhận đầy đủ tên người nhận, số điện thoại, địa chỉ và sản phẩm đã đặt.</p>
+                    
+                    <p><em>Chuyển khoản ngân hàng</em><br>
+                    Sau khi đặt hàng, bạn sẽ nhận được thông tin tài khoản, số tiền cần thanh toán và nội dung chuyển khoản. Đơn hàng được chuyển sang bước xử lý khi Scentura ghi nhận giao dịch thành công.</p>
+                    
+                    <p><em>Thanh toán trực tuyến</em><br>
+                    Website có thể hỗ trợ thẻ tín dụng, thẻ ghi nợ quốc tế và Apple Pay thông qua cổng thanh toán trung gian. Scentura không trực tiếp lưu trữ thông tin thẻ của khách hàng trên hệ thống.</p>
+                    
+                    <p>Sau khi hoàn tất đặt hàng, Scentura sẽ gửi xác nhận qua email, tin nhắn hoặc cuộc gọi. Trường hợp thông tin chưa đầy đủ hoặc giao dịch chưa thành công, đội ngũ chăm sóc khách hàng sẽ liên hệ để hỗ trợ trước khi đóng gói.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Chính sách giao hàng -->
+        <section class="policy_row_section">
+            <div class="policy_row reverse">
+                <div class="policy_img_col">
+                    <img src="images/policy_chinhsachgiaohang.jpg" alt="Chính sách giao hàng">
+                </div>
+                <div class="policy_text_col">
+                    <h2>Chính sách giao hàng</h2>
+                    <!-- <p class="policy_bold_title">Chăm chút từ lúc đóng gói đến khi sản phẩm đến tay bạn</p> -->
+                    
+                    <p>Đối với đơn hàng trên Shopee, TikTok Shop hoặc Lazada, phí vận chuyển, thời gian giao hàng và đơn vị giao nhận được áp dụng theo chính sách của từng nền tảng.</p>
+                    
+                    <p>Đối với đơn hàng trên website Scentura, khách hàng có thể lựa chọn:</p>
+                    <ul>
+                        <li>Giao hàng tiết kiệm.</li>
+                        <li>Giao hàng nhanh.</li>
+                        <li>Giao hàng có thu hộ COD.</li>
+                    </ul>
+                    
+                    <p>Đơn hàng sẽ được xử lý, đóng gói và bàn giao cho đơn vị vận chuyển trong vòng 24 - 48 giờ làm việc sau khi được xác nhận.</p>
+                    
+                    <p>Thời gian nhận hàng thực tế có thể thay đổi tùy theo khu vực, phương thức vận chuyển, thời tiết, ngày lễ hoặc thời gian cao điểm. Mọi chi phí giao hàng sẽ được thông báo rõ trước khi đơn hàng được xác nhận.</p>
+                    
+                    <p>Trong trường hợp giao hàng không thành công do sai thông tin, không liên lạc được hoặc khách hàng từ chối nhận không có lý do phù hợp, đơn hàng có thể được hoàn về. Khi cần giao lại, chi phí phát sinh sẽ do khách hàng thanh toán.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Chính sách đổi trả và hoàn tiền -->
+        <section class="policy_row_section">
+            <div class="policy_row">
+                <div class="policy_img_col">
+                    <img src="images/policy_chinhsachdoitra.png" alt="Chính sách đổi trả và hoàn tiền">
+                </div>
+                <div class="policy_text_col">
+                    <h2>Chính sách đổi trả và hoàn tiền</h2>
+                    <!-- <p class="policy_bold_title">Bảo vệ quyền lợi, đồng thời gìn giữ sự nguyên vẹn của sản phẩm</p> -->
+                    
+                    <p>Scentura hỗ trợ đổi trả hoặc hoàn tiền trong các trường hợp:</p>
+                    <ul>
+                        <li>Giao sai sản phẩm.</li>
+                        <li>Giao thiếu số lượng.</li>
+                        <li>Sản phẩm có lỗi từ nhà sản xuất.</li>
+                        <li>Sản phẩm bị hư hỏng nghiêm trọng khi vận chuyển.</li>
+                        <li>Sản phẩm hết hạn sử dụng.</li>
+                        <li>Sản phẩm không đúng với thông tin được mô tả trên website.</li>
+                    </ul>
+                    
+                    <p>Khách hàng cần liên hệ trong vòng 48 giờ kể từ khi nhận hàng và cung cấp hình ảnh hoặc video mở kiện hàng.</p>
+                    
+                    <p>Sản phẩm đổi trả cần:</p>
+                    <ul>
+                        <li>Còn đầy đủ hộp, bao bì, tem và seal.</li>
+                        <li>Chưa được mở hoặc sử dụng.</li>
+                        <li>Không bị rách, ướt, bẩn hoặc biến dạng.</li>
+                        <li>Có thông tin chứng minh được mua từ kênh chính thức của Scentura.</li>
+                    </ul>
+                    
+                    <p>Các sản phẩm quà tặng, dùng thử hoặc thuộc chương trình ưu đãi đặc biệt sẽ không áp dụng đổi trả khi có thông báo trước, trừ trường hợp lỗi từ phía thương hiệu.</p>
+                    
+                    <p>Đối với đơn hàng đủ điều kiện hoàn tiền, thời gian xử lý dự kiến từ 3 - 7 ngày làm việc sau khi Scentura hoàn tất xác nhận.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Chính sách kiểm tra hàng -->
+        <section class="policy_row_section">
+            <div class="policy_row reverse">
+                <div class="policy_img_col">
+                    <img src="images/policy_chinhsachkiemtrahang.png" alt="Chính sách kiểm tra hàng">
+                </div>
+                <div class="policy_text_col">
+                    <h2>Chính sách kiểm tra hàng</h2>
+                    <!-- <p class="policy_bold_title">Kiểm tra nhẹ nhàng trước khi nhận</p> -->
+                    
+                    <p>Khi nhận đơn, bạn có thể kiểm tra:</p>
+                    <ul>
+                        <li>Tình trạng bên ngoài của kiện hàng.</li>
+                        <li>Số lượng sản phẩm.</li>
+                        <li>Tên sản phẩm, phiên bản hoặc mùi hương.</li>
+                        <li>Tình trạng hộp, tem và seal.</li>
+                        <li>Hạn sử dụng.</li>
+                    </ul>
+                    
+                    <p>Nếu kiện hàng bị móp, rách, ướt hoặc có dấu hiệu hư hỏng, bạn nên chụp ảnh hoặc quay video để Scentura có cơ sở hỗ trợ.</p>
+                    
+                    <p>Vì đây là sản phẩm chăm sóc cá nhân, khách hàng không nên mở seal từng miếng dán hoặc sử dụng thử trong quá trình kiểm tra. Việc mở hoặc sử dụng sản phẩm có thể ảnh hưởng đến điều kiện đổi trả.</p>
+                    
+                    <p>Scentura khuyến khích bạn quay video từ khi kiện hàng còn nguyên trạng đến lúc kiểm tra sản phẩm bên trong. Đây sẽ là căn cứ hữu ích khi phát sinh trường hợp giao sai, giao thiếu hoặc hư hỏng.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Chính sách bảo mật thông tin -->
+        <section class="policy_row_section">
+            <div class="policy_row">
+                <div class="policy_img_col">
+                    <img src="images/policy_chinhsachbaomatthongtin.jpg" alt="Chính sách bảo mật thông tin">
+                </div>
+                <div class="policy_text_col">
+                    <h2>Chính sách bảo mật thông tin</h2>
+                    <!-- <p class="policy_bold_title">Thông tin của bạn luôn được trân trọng</p> -->
+                    
+                    <p>Scentura có thể thu thập những thông tin cần thiết trong quá trình mua hàng như:</p>
+                    <ul>
+                        <li>Họ và tên.</li>
+                        <li>Số điện thoại.</li>
+                        <li>Email.</li>
+                        <li>Địa chỉ giao hàng.</li>
+                        <li>Thông tin và lịch sử đơn hàng.</li>
+                        <li>Nội dung trao đổi với bộ phận chăm sóc khách hàng.</li>
+                    </ul>
+                    
+                    <p>Các thông tin này được sử dụng để xác nhận và giao đơn, hỗ trợ đổi trả, hoàn tiền, giải quyết khiếu nại, chăm sóc sau mua và cải thiện trải nghiệm trên website.</p>
+                    
+                    <p>Scentura không bán hoặc chia sẻ thông tin cá nhân cho bên thứ ba vì mục đích thương mại trái phép. Trong phạm vi cần thiết, thông tin có thể được cung cấp cho đơn vị vận chuyển, cổng thanh toán hoặc đối tác kỹ thuật để hoàn tất đơn hàng và vận hành website.</p>
+                    
+                    <p>Khách hàng có thể yêu cầu kiểm tra, cập nhật, chỉnh sửa hoặc xóa thông tin cá nhân bằng cách liên hệ với Scentura.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Chính sách giải quyết khiếu nại -->
+        <section class="policy_row_section">
+            <div class="policy_row reverse">
+                <div class="policy_img_col" style="margin-top: 15px; margin-bottom: 15px; border-radius: 8px; overflow: hidden; max-width: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05); aspect-ratio: auto; height: auto; display: block;">
+                    <img src="images/policy_pattern_rp.jpg" alt="Chính sách giải quyết khiếu nại" style="width: 100%; height: auto; object-fit: contain !important;">
+                </div>
+                <div class="policy_text_col">
+                    <h2>Chính sách giải quyết khiếu nại</h2>
+                    <!-- <p class="policy_bold_title">Lắng nghe cẩn thận, phản hồi rõ ràng</p> -->
+                    
+                    <p>Scentura tiếp nhận các phản hồi liên quan đến:</p>
+                    <ul>
+                        <li>Giao sai hoặc giao thiếu sản phẩm.</li>
+                        <li>Sản phẩm hư hỏng hoặc có lỗi.</li>
+                        <li>Đơn hàng giao chậm.</li>
+                        <li>Sai thông tin đơn hàng.</li>
+                        <li>Vấn đề thanh toán.</li>
+                        <li>Đổi trả và hoàn tiền.</li>
+                        <li>Trải nghiệm trong quá trình sử dụng.</li>
+                    </ul>
+                    
+                    <p>Khách hàng có thể gửi thông tin qua:</p>
+                    <ul>
+                        <li><strong>Hotline:</strong> 0905.145.789</li>
+                        <li><strong>Email:</strong> contact@scentura.com</li>
+                        <li>
+                            <strong>Biểu mẫu liên hệ trên website:</strong> <a href="https://forms.gle/JuWAKvnHouEYf94y8" target="_blank" style="color: #1e3f22; font-weight: 600; text-decoration: underline;">https://forms.gle/JuWAKvnHouEYf94y8</a>
+                        </li>
+                    </ul>
+                    
+                    <p>Khi gửi yêu cầu, vui lòng cung cấp mã đơn hàng, họ tên, số điện thoại, nội dung cần hỗ trợ cùng hình ảnh hoặc video liên quan.</p>
+                    
+                    <p>Scentura sẽ phản hồi trong vòng 24 - 48 giờ làm việc kể từ khi nhận đủ thông tin. Với những trường hợp cần xác minh thêm từ đơn vị vận chuyển hoặc đối tác, thời gian xử lý có thể kéo dài hơn và tiến độ sẽ được chủ động cập nhật đến khách hàng.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Khung màu be hỗ trợ liên hệ -->
+        <div class="support_box_beige">
+            <h3>Cần Scentura hỗ trợ?</h3>
+            <p>Mỗi phản hồi đều là một phần giúp chúng tôi chăm chút trải nghiệm tốt hơn.</p>
+            <a href="https://forms.gle/JuWAKvnHouEYf94y8" target="_blank" class="support_btn">LIÊN HỆ SCENTURA</a>
+        </div>
+    </main>
+
+    <!---------------- FOOTER ---------------->
+    <footer class="footer">
+        <div class="watermark">SCENTURA</div>
+        <div class="footer_container">
+            <!-- Brand -->
+            <div class="footer_brand">
+                <h2>SCENTURA</h2>
+                <p>Stay Fresh Stay Confident</p>
+                <div class="footer_contact">
+                    <p>📍 <a href="https://maps.app.goo.gl/hbhbMCv3RJ6fPVcH6" target="_blank" style="color: inherit; text-decoration: none; border-bottom: 1px dashed rgba(255,255,255,0.4);">2 Mai Thị Lựu, Phường Sài Gòn, Hồ Chí Minh, Việt Nam</a></p>
+                    <p>📞 0905 145 789</p>
+                    <p>✉ contact@scentura.com</p>
+                </div>
+            </div>
+
+            <!-- Menu -->
+            <div class="footer_column">
+                <h3>Khám phá</h3>
+                <a href="index.html">Trang chủ</a>
+                <a href="intro.html">Giới thiệu</a>
+                <a href="products.html">Sản phẩm</a>
+                <a href="#">Liên hệ</a>
+            </div>
+
+            <!-- Policy -->
+            <div class="footer_column">
+                <h3>Chính sách</h3>
+                <a href="policy.html">Giao hàng</a>
+                <a href="policy.html">Đổi trả</a>
+                <a href="policy.html">Bảo mật</a>
+                <a href="policy.html">Điều khoản</a>
+            </div>
+
+            <!-- Social -->
+            <div class="footer_column">
+                <h3>Theo dõi</h3>
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">TikTok</a>
+                <a href="#">YouTube</a>
+                
+                <h3 class="payment_title" style="margin-top: 35px; margin-bottom: 15px; font-size: 22px;">
+                    Thanh toán
+                </h3>
+                <div class="payment">
+                    <img src="images/visa.webp" alt="Visa">
+                    <img src="images/mastercard.png" alt="MasterCard">
+                    <img src="images/momo.png" alt="Momo">
+                    <img src="images/vnpay.webp" alt="VNPAY">
+                    <img src="images/zalopay.webp" alt="ZaloPay">
+                </div>
+            </div>
+        </div>
+
+        <div class="footer_bottom">
+            © 2026 SCENTURA. All rights reserved.
+        </div>
+    </footer>
+
+    <!---------------- JAVASCRIPT ---------------->
+    <script>
+        // Điều khiển navbar scrolled
+        window.addEventListener("scroll", function () {
+            const navbar = document.querySelector(".navbar");
+            if (window.scrollY > 1) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        });
+    </script>
+    <script src="auth.js"></script>
+</body>
+</html>

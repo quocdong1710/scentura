@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./scentura_be
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - sqlite-data:/app/data
+    environment:
+      - PORT=5000
+      - JWT_SECRET=scentura_super_secret_key_123!
+      - DB_PATH=/app/data/scentura.db
+      - NODE_ENV=production
+    restart: always
+
+  frontend:
+    build:
+      context: ./scentura_fe
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: always
+
+volumes:
+  sqlite-data:

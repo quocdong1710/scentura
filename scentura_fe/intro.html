@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu - Scentura</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /*================ RESET & BASIS ================*/
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fbf9f4;
+            color: #2c3e2e;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /*================ HEADER SALE ================*/
+        .header_sale {
+            width: 100%;
+            height: 45px;
+            background: #0e2b19;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding: 0 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .header_sale h3 {
+            margin: 0;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .header_sale button {
+            background: #e2c076;
+            color: #0e2b19;
+            border: none;
+            padding: 6px 14px;
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .header_sale button:hover {
+            background: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        /*================ NAVBAR ================*/
+        .navbar {
+            width: 100%;
+            height: 80px;
+            position: fixed;
+            top: 45px;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            background: rgba(251, 249, 244, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(30, 63, 34, 0.05);
+        }
+
+        .navbar.scrolled {
+            height: 70px;
+            top: 0;
+            background: rgba(30, 63, 34, 0.98);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar_container {
+            width: 90%;
+            max-width: 1400px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: #1e3f22;
+            text-decoration: none;
+            letter-spacing: 3px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar.scrolled .brand {
+            color: #ffffff;
+        }
+
+        .nav_menu {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .nav_menu a {
+            text-decoration: none;
+            color: #1e3f22;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .navbar.scrolled .nav_menu a {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .nav_menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #e2c076;
+            transition: width 0.3s ease;
+        }
+
+        .nav_menu a:hover::after,
+        .nav_menu a.active::after {
+            width: 100%;
+        }
+
+        .nav_menu a:hover {
+            color: #e2c076;
+        }
+
+        .navbar.scrolled .nav_menu a:hover {
+            color: #ffffff;
+        }
+
+        /*================ INTRO IMAGE ================*/
+        .intro_image {
+            flex: 1;
+            width: 100%; 
+            height: auto; 
+            display: block; 
+            object-fit: cover;
+        }
+
+        .intro_image {
+            margin-top: 125px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .intro_image img {
+            width: 100%; 
+            height: auto; 
+            display: block; 
+            object-fit: cover;
+            border-radius: 0;
+        }
+
+        /*================ MAIN CONTENT ================*/
+        .main_content {
+            padding: 0px 20px 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: -3cm;
+        }
+
+        .intro_hero {
+            text-align: center;
+            margin-bottom: 70px;
+            padding: 50px 0px;
+        }
+
+        .intro_hero h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 48px;
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: #1e3f22;
+            max-width: 100%;
+            
+        }
+
+        .intro_hero p {
+            font-family: 'Lora', Georgia, serif;
+            font-size: 18px;
+            color: #556b58;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.65;
+        }
+
+        /*================ HVM SECTION (HISTORY, VISION, MISSION) ================*/
+        .hvm_section {
+            padding: 50px 0;
+            border-bottom: 1px dotted rgba(30, 63, 34, 0.35);
+        }
+        
+        .hvm_section:last-of-type {
+            border-bottom: none;
+            padding-bottom: 40px;
+        }
+
+        .hvm_row {
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+            gap: 70px;
+        }
+
+        .hvm_row.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .hvm_text_col {
+            flex: 1.1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hvm_text_col h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 34px;
+            color: #1e3f22;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .hvm_basic_text {
+            font-family: 'Lora', Georgia, serif;
+            font-size: 16px;
+            color: #4a5c4d;
+            line-height: 1.8;
+            margin-bottom: 0;
+            text-align: justify;
+        }
+
+        .hvm_expandable_content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+
+        .hvm_expandable_content.active {
+            max-height: 500px;
+        }
+
+        .hvm_detailed_text {
+            font-family: 'Lora', Georgia, serif;
+            font-size: 16px;
+            color: #4a5c4d;
+            line-height: 1.8;
+            margin-top: 15px;
+            text-align: justify;
+        }
+
+        .hvm_toggle_btn {
+            background: none;
+            border: none;
+            color: #1e3f22;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-top: 18px;
+            padding: 5px 0;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .hvm_toggle_btn:hover {
+            color: #b89240;
+        }
+
+        .hvm_toggle_btn svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+            transition: transform 0.3s ease;
+        }
+
+        .hvm_toggle_btn.active svg {
+            transform: rotate(180deg);
+        }
+
+        .hvm_img_col {
+            flex: 0.9;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            aspect-ratio: 1.6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hvm_img_col img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover !important;
+            transition: transform 0.5s ease;
+        }
+
+        .hvm_img_col.auto_height {
+            aspect-ratio: auto;
+        }
+
+        .hvm_img_col.auto_height img {
+            height: auto;
+        }
+
+        .hvm_img_col:hover img {
+            transform: scale(1.03);
+        }
+
+        @media (max-width: 992px) {
+            .hvm_row {
+                flex-direction: column !important;
+                gap: 35px;
+            }
+            .hvm_row.reverse {
+                flex-direction: column !important;
+            }
+            .hvm_img_col {
+                width: 100%;
+            }
+            .intro_hero h1 {
+                font-size: 36px;
+            }
+        }
+
+        .bottom_feature_btn {
+            display: inline-block;
+            width: 100%;
+            background: #1e3f22;
+            color: #ffffff;
+            text-align: center;
+            padding: 16px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Lora', Georgia, serif;
+            margin-top: 15px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .bottom_feature_btn:hover {
+            background: #16301a;
+            transform: translateY(-2px);
+        }
+
+        /*================ FOOTER ================*/
+        .footer{
+            position:relative;
+            background:#1e3f22;
+            color:#fff;
+            padding:80px 0 30px;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+        
+        .watermark{
+            position:absolute;
+            right:-50px;
+            bottom:-20px;
+            font-size:180px;
+            font-weight:bold;
+            letter-spacing:12px;
+            color:white;
+            opacity:.03;
+            pointer-events:none;
+            user-select:none;
+        }
+
+        .footer_container{
+            width:90%;
+            max-width:1400px;
+            margin:auto;
+            display:grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap:70px;
+        }
+
+        .footer_brand h2{
+            font-size:38px;
+            letter-spacing:2px;
+            margin-bottom:20px;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .footer_brand p{
+            color:rgba(255,255,255,.8);
+            line-height:1.8;
+            font-size: 14px;
+        }
+
+        .footer_contact{
+            margin-top:30px;
+            font-size: 14px;
+        }
+
+        .footer_contact p{
+            margin-bottom:12px;
+        }
+
+        .footer_column h3{
+            margin-bottom:25px;
+            font-size:22px;
+            font-family: 'Lora', Georgia, serif;
+        }
+
+        .footer_column a{
+            display:block;
+            color:rgba(255,255,255,.75);
+            text-decoration:none;
+            margin-bottom:16px;
+            transition:.3s;
+            font-size: 14px;
+        }
+
+        .footer_column a:hover{
+            color:#d6c29a;
+            transform:translateX(5px);
+        }
+
+        .footer_bottom{
+            width:90%;
+            max-width:1400px;
+            margin:60px auto 0;
+            border-top:1px solid rgba(255,255,255,.15);
+            padding-top:25px;
+            text-align:center;
+            color:rgba(255,255,255,.6);
+            font-size: 13px;
+        }
+
+        .payment{
+            display:flex;
+            gap:12px;
+            flex-wrap:wrap;
+            margin-top:18px;
+        }
+
+        .payment img{
+            width:50px;
+            padding:8px;
+            background:white;
+            border-radius:8px;
+            transition:.3s;
+        }
+
+        .payment img:hover{
+            transform:translateY(-4px);
+        }
+    </style>
+</head>
+<body>
+
+    <!---------------- HEADER SALE ---------------->
+    <div class="header_sale">
+        <h3>MUA CÀNG NHIỀU, ƯU ĐÃI CÀNG LỚN VỚI COMBO DEALS CỦA SCENTURA</h3>
+        <button>NHẬN ƯU ĐÃI</button>
+    </div>
+
+    <!---------------- NAVBAR ---------------->
+    <nav class="navbar">
+        <div class="navbar_container">
+            <!-- bên trái -->
+            <a href="index.html" class="brand">SCENTURA</a>
+
+            <!-- bên phải -->
+            <div class="nav_menu">
+                <a href="index.html">Trang chủ</a>
+                <a href="intro.html" class="active">Giới thiệu</a>
+                <a href="products.html">Sản phẩm</a>
+                <a href="policy.html">Chính sách</a>
+                <a href="contact.html">Liên hệ</a>
+                <a href="login.html" id="auth-nav-link">Đăng Nhập</a>
+            </div>
+        </div>
+    </nav>
+
+    <!---------------- INTRO IMAGE ---------------->
+    <div class="intro_image">
+        <img src="images/intro_pic1.jpg" alt="Scentura Introduction">
+    </div>
+
+    <!---------------- MAIN CONTENT ---------------->
+        <div class="intro_hero">
+            <h1 >Câu Chuyện Scentura</h1>
+            <!-- <p>Khởi nguồn từ mong muốn mang lại sự tự tin toàn diện và tinh tế nhất cho mỗi cá nhân trong nhịp sống hiện đại năng động.</p> -->
+        </div>
+    <main class="main_content">
+        <!-- Hero Section -->
+        
+
+        <!-- History Section -->
+        <section class="hvm_section">
+            <div class="hvm_row">
+                <div class="hvm_img_col auto_height">
+                    <img src="images/intro_history.png" alt="Lịch sử hình thành">
+                </div>
+                <div class="hvm_text_col">
+                    <h2>Bắt đầu từ một điều không phải ai cũng dễ nói thành lời ...</h2>
+                    <p class="hvm_basic_text">
+                        Trong nhịp sống hằng ngày, chúng ta thường dành nhiều sự chuẩn bị cho trang phục, công việc và những cuộc gặp gỡ. Nhưng vẫn có những băn khoăn rất riêng mà mỗi người thường giữ lại cho mình.<br><br>
+
+Đó là cảm giác không chắc chắn về sự thơm tho và chỉn chu sau một ngày dài di chuyển, học tập hoặc làm việc.<br><br>
+
+Scentura ra đời từ sự thấu hiểu ấy.<br><br>
+
+Chúng tôi không muốn làm lớn thêm một nỗi lo tự nhiên của cơ thể. Scentura lựa chọn đồng hành theo cách kín đáo hơn, để mỗi người có thể cảm thấy nhẹ lòng và tập trung vào những điều thực sự quan trọng.<br>
+                    </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vision Section -->
+        <section class="hvm_section">
+            <div class="hvm_row reverse">
+                <div class="hvm_img_col">
+                    <img src="images/intro_vision.png" alt="Tầm nhìn">
+                </div>
+                <div class="hvm_text_col">
+                    <h2>TẦM NHÌN</h2>
+                    <p class="hvm_basic_text">
+                        Scentura hướng đến việc trở thành thương hiệu dẫn đầu trong lĩnh vực phụ kiện chăm sóc cá nhân thông minh tại thị trường Việt Nam và từng bước vươn tầm khu vực Đông Nam Á.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission Section -->
+        <section class="hvm_section">
+            <div class="hvm_row">
+                <div class="hvm_img_col">
+                    <img src="images/intro_mission.png" alt="Sứ mệnh">
+                </div>
+                <div class="hvm_text_col">
+                    <h2>SỨ MỆNH</h2>
+                    <p class="hvm_basic_text">
+                        Scentura mang đến giải pháp miếng dán kiểm soát mùi cơ thể kín đáo, tiện lợi và dễ sử dụng, giúp người dùng chủ động duy trì sự thơm tho, chỉn chu và tự tin trong học tập, công việc cũng như giao tiếp hằng ngày.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Value Section -->
+        <section class="hvm_section">
+            <div class="hvm_row reverse">
+                <div class="hvm_img_col auto_height">
+                    <img src="images/intro_value.png" alt="Giá trị">
+                </div>
+                <div class="hvm_text_col">
+                    <h2>GIÁ TRỊ CỐT LÕI </h2>
+                    <p class="hvm_basic_text">
+                        <strong>Nhẹ nhàng trong cách hiện diện, rõ ràng trong từng điều chúng tôi làm</strong><br><br>
+                        <strong> Tiên phong</strong><br>
+
+                        Tìm kiếm những cách tiếp cận mới cho các nhu cầu chăm sóc cá nhân chưa được quan tâm đúng mức.<br><br>
+
+                        <strong> Tinh tế</strong><br>
+
+                        Tôn trọng sự riêng tư, cảm xúc và trải nghiệm cá nhân của mỗi người.<br><br>
+
+                        <strong> Thực tiễn </strong><br>
+
+                        Phát triển thương hiệu từ những tình huống gần gũi với khí hậu, thói quen di chuyển và nhịp sống hằng ngày.<br><br>
+
+                        <strong> An tâm </strong><br>
+
+                        Giúp người dùng bớt đi một băn khoăn nhỏ để dành nhiều sự tập trung hơn cho những điều quan trọng.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Commitment Section -->
+        <section class="hvm_section">
+            <div class="hvm_row">
+                <div class="hvm_img_col">
+                    <img src="images/intro_commit.png" alt="Cam kết">
+                </div>
+                <div class="hvm_text_col">
+                    <h2>ĐIỀU CHÚNG TÔI CAM KẾT</h2>
+                    <p class="hvm_basic_text">
+                        <strong>Sự tin tưởng được vun đắp từ những điều rõ ràng</strong><br><br>
+                        Scentura cam kết trung thực trong cách giới thiệu thương hiệu, minh bạch về khả năng và giới hạn của sản phẩm, đồng thời tôn trọng quyền riêng tư của người dùng.<br><br>
+
+                        Chúng tôi không theo đuổi những lời hứa phóng đại. Mỗi bước phát triển đều được xây dựng từ việc lắng nghe nhu cầu thực tế, tiếp nhận phản hồi và không ngừng hoàn thiện trải nghiệm.<br><br>
+
+                        Mỗi hành trình tự tin đều có thể bắt đầu từ một điều rất nhỏ
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+        <a href="products.html" class="bottom_feature_btn">Khám phá sản phẩm của SCENTURA</a>
+        <!-- unknown Section -->
+        <!-- <section class="hvm_section">
+            <div class="hvm_row">
+                <div class="hvm_text_col">
+                    <div>
+                        <p style="font-size: 22px; line-height: 1.6;font-family: 'Lora', Georgia, serif; color: #4a5c4d; text-align: justify;">
+                            SCENTURA là thương hiệu chăm sóc cá nhân thông minh với sản phẩm nổi bật là miếng dán kiểm soát mùi cơ thể, được thiết kế để đồng hành cùng người dùng trong học tập, công việc và các hoạt động hằng ngày. Với cơ chế 3 trong 1 gồm thấm hút mồ hôi – cảnh báo nguy cơ mùi bằng tín hiệu đổi màu – kích hoạt hương thơm nhẹ khi cần, Scentura giúp người dùng chủ động theo dõi và duy trì sự thơm tho một cách kín đáo. Không chỉ là một sản phẩm khử mùi, Scentura hướng đến việc mang lại cảm giác an tâm, giúp mỗi người luôn tự tin và thoải mái trong mọi tương tác. 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+    </main>
+
+    <!---------------- FOOTER ---------------->
+    <footer class="footer">
+        <div class="watermark">SCENTURA</div>
+        <div class="footer_container">
+            <!-- Brand -->
+            <div class="footer_brand">
+                <h2>SCENTURA</h2>
+                <p>Stay Fresh Stay Confident</p>
+                <div class="footer_contact">
+                    <p>📍 <a href="https://maps.app.goo.gl/hbhbMCv3RJ6fPVcH6" target="_blank" style="color: inherit; text-decoration: none; border-bottom: 1px dashed rgba(255,255,255,0.4);">2 Mai Thị Lựu, Phường Sài Gòn, Hồ Chí Minh, Việt Nam</a></p>
+                    <p>📞 0905 145 789</p>
+                    <p>✉ contact@scentura.com</p>
+                </div>
+            </div>
+
+            <!-- Menu -->
+            <div class="footer_column">
+                <h3>Khám phá</h3>
+                <a href="index.html">Trang chủ</a>
+                <a href="intro.html">Giới thiệu</a>
+                <a href="products.html">Sản phẩm</a>
+                <a href="contact.html">Liên hệ</a>
+            </div>
+
+            <!-- Policy -->
+            <div class="footer_column">
+                <h3>Chính sách</h3>
+                <a href="policy.html">Giao hàng</a>
+                <a href="policy.html">Đổi trả</a>
+                <a href="policy.html">Bảo mật</a>
+                <a href="policy.html">Điều khoản</a>
+            </div>
+
+            <!-- Social -->
+            <div class="footer_column">
+                <h3>Theo dõi</h3>
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">TikTok</a>
+                <a href="#">YouTube</a>
+                
+                <h3 class="payment_title" style="margin-top: 35px; margin-bottom: 15px; font-size: 22px;">
+                    Thanh toán
+                </h3>
+                <div class="payment">
+                    <img src="images/visa.webp" alt="Visa">
+                    <img src="images/mastercard.png" alt="MasterCard">
+                    <img src="images/momo.png" alt="Momo">
+                    <img src="images/vnpay.webp" alt="VNPAY">
+                    <img src="images/zalopay.webp" alt="ZaloPay">
+                </div>
+            </div>
+        </div>
+
+        <div class="footer_bottom">
+            © 2026 SCENTURA. All rights reserved.
+        </div>
+    </footer>
+
+    <!---------------- JAVASCRIPT ---------------->
+    <script>
+        // Điều khiển navbar scrolled
+        window.addEventListener("scroll", function () {
+            const navbar = document.querySelector(".navbar");
+            if (window.scrollY > 1) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        });
+
+        // Xử lý đóng/mở (Accordion) cho các phần Lịch sử, Tầm nhìn, Sứ mệnh
+        document.querySelectorAll('.hvm_toggle_btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const textCol = this.closest('.hvm_text_col');
+                const target = textCol.querySelector('.hvm_expandable_content');
+                target.classList.toggle('active');
+                this.classList.toggle('active');
+                
+                const btnText = this.querySelector('span');
+                if (target.classList.contains('active')) {
+                    btnText.textContent = "Thu gọn";
+                } else {
+                    btnText.textContent = "Xem thêm";
+                }
+            });
+        });
+    </script>
+    <script src="auth.js"></script>
+</body>
+</html>

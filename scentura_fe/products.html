@@ -1,0 +1,2285 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản phẩm - Scentura</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Lora', Georgia, serif;
+            background: #fbf9f4;
+            display: flex;
+            flex-direction: column;
+        }
+
+        button, input, select, textarea {
+            font-family: inherit;
+        }
+
+        /*================ HEADER SALE ================*/
+        .header_sale {
+            width: 100%;
+            height: 50px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #008000;
+            color: white;
+            z-index: 1000;
+        }
+
+        .header_sale h3 {
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .header_sale button {
+            margin-left: 30px;
+            padding: 8px 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+            background: #28A745;
+            transition: .3s ease;
+        }
+
+        .header_sale button:hover {
+            background: #1d8b38;
+        }
+
+        /*================ NAVBAR ================*/
+        .navbar {
+            width: 100%;
+            height: 80px;
+            position: fixed;
+            top: 50px;
+            left: 0;
+            background: transparent;
+            transition: all .4s ease;
+            z-index: 999;
+        }
+
+        .navbar_container {
+            width: 90%;
+            max-width: 1400px;
+            height: 100%;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /*================ BRAND ================*/
+        .brand {
+            text-decoration: none;
+            font-size: 32px;
+            font-weight: bold;
+            color: black;
+            transition: .4s ease;
+        }
+
+        /*================ MENU ================*/
+        .nav_menu {
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav_menu a {
+            text-decoration: none;
+            font-size: 18px;
+            color: black;
+            transition: .4s ease;
+        }
+
+        .nav_menu a:hover {
+            opacity: .7;
+        }
+
+        /*================ HOVER NAVBAR ================*/
+        .navbar:not(.scrolled):hover {
+            background: rgba(240, 247, 244, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .navbar:not(.scrolled):hover .brand {
+            color: #0A2F1D;
+        }
+
+        .navbar:not(.scrolled):hover .nav_menu a {
+            color: #0A2F1D;
+        }
+
+        /*================ KHI SCROLL ================*/
+        .navbar.scrolled {
+            background: #D2E5DB;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .navbar.scrolled .brand {
+            color: #0A2F1D;
+        }
+
+        .navbar.scrolled .nav_menu a {
+            color: #0A2F1D;
+        }
+
+        /*================ MAIN CONTENT (PRODUCTS) ================*/
+        .main_content {
+            flex: 1;
+            padding-top: 160px; /* Bù đắp khoảng trống của header_sale + navbar */
+            padding-bottom: 80px;
+            width: 90%;
+            max-width: 1250px;
+            margin: 0 auto;
+        }
+
+        .page_header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .page_header h1 {
+            font-size: 40px;
+            color: #1e3f22;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .page_header p {
+            font-size: 17px;
+            color: #666666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /*================ SEARCH BAR ================*/
+        .search_wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 3cm; 
+            margin-bottom: 30px;
+        }
+
+        .search_box {
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+            border: 1.5px solid #1e3f22;
+            border-radius: 24px;
+            padding: 4px 6px 4px 16px;
+            width: 280px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+
+        .search_box:focus-within {
+            border-color: #e2c076;
+            width: 330px;
+            box-shadow: 0 4px 18px rgba(30, 63, 34, 0.08);
+        }
+
+        .search_input {
+            border: none;
+            outline: none;
+            background: transparent;
+            width: 100%;
+            font-size: 14px;
+            color: #1e3f22;
+            font-family: 'Lora', Georgia, serif;
+        }
+
+        .search_input::placeholder {
+            color: #888888;
+        }
+
+        .search_btn {
+            border: none;
+            background: #1e3f22;
+            color: #ffffff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .search_btn:hover {
+            background: #e2c076;
+            color: #0A2F1D;
+        }
+
+        .search_btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        @media (max-width: 768px) {
+            .search_wrapper {
+                padding-right: 20px;
+                justify-content: center;
+            }
+            .search_box {
+                width: 100%;
+                max-width: 350px;
+            }
+            .search_box:focus-within {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+
+        /*================ ROLLS SECTION ================*/
+
+        .rolls_section {
+            width: 100%;
+            padding: 60px 20px;
+            background: #fdfbf7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .rolls_container {
+            position: relative;
+            width: 100%;
+            /* max-width: 1100px; */
+            margin: auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            background: #ffffff;
+        }
+
+        /*================ ROLLS SECTION FULL PAGE WIDTH OVERRIDE ================*/
+        #RollsSection {
+            width: 100%;
+            padding: 0;
+            background: transparent;
+        }
+
+        #RollsSection .rolls_container {
+            width: 100%;
+            max-width: 100% !important;
+            margin: 0;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        #RollsSection .roll img {
+            width: 100%;
+            height: auto;
+            max-height: none;
+            object-fit: cover;
+            display: block;
+        }
+
+        .rolls {
+            display: flex;
+            width: 100%;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .roll {
+            min-width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .roll img {
+            width: 100%;
+            height: auto;
+            max-height: 650px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Mũi tên điều hướng */
+        .roll_btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            color: #0A2F1D;
+            font-size: 22px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            user-select: none;
+        }
+
+        .roll_btn:hover {
+            background: #0A2F1D;
+            color: #ffffff;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .roll_btn.prev {
+            left: 8px;
+        }
+
+        .roll_btn.next {
+            right: 8px;
+        }
+
+        /* Dots chỉ số */
+        .rolls_dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        #topRollsDots,
+        #workdayDots,
+        #campusDots,
+        #commuteDots,
+        #socialDots,
+        #sensitiveDots {
+            bottom: 95px;
+        }
+
+        .rolls_dots .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            border: 2px solid #0A2F1D;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .rolls_dots .dot.active,
+        .rolls_dots .dot:hover {
+            background: #0A2F1D;
+            width: 28px;
+            border-radius: 10px;
+        }
+
+        /*================ FEATURED ROLLS OVERRIDE (LEFT TEXT, RIGHT SLIDER) ================*/
+
+        .collection_section {
+            padding: 90px 20px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1300px;
+            margin: 0 auto;
+            gap: 50px;
+            box-sizing: border-box;
+            border-bottom: 1px solid rgba(30, 63, 34, 0.05);
+        }
+
+        .collection_section:nth-of-type(even) {
+            background: #ffffff;
+        }
+
+        .collection_section:nth-of-type(odd) {
+            background: #fbf9f4;
+        }
+
+        .featured_left_col {
+            flex: 1;
+            max-width: 480px;
+            text-align: left;
+        }
+
+        .featured_left_col h2 {
+            font-size: 36px !important;
+            font-weight: 700;
+            color: #1e3f22;
+            font-family: 'Lora', Georgia, serif;
+            line-height: 1.25;
+            margin-bottom: 20px;
+        }
+
+        .featured_left_col p {
+            font-size: 16px;
+            color: #555555;
+            font-family: 'Lora', Georgia, serif;
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        /* Nửa bên phải - Slider 5 ảnh sản phẩm */
+        .collection_section .rolls_container {
+            flex: 1.2;
+            width: 100%;
+            max-width: 720px;
+            background: transparent;
+            border-radius: 24px;
+            padding: 0;
+            box-shadow: none;
+            margin: 0;
+        }
+
+        .collection_section .roll {
+            min-width: 50%;
+            flex: 0 0 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        .product_visible_info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 14px;
+            width: 100%;
+            text-align: left;
+        }
+
+        .product_visible_text {
+            flex: 1;
+        }
+
+        .add_to_cart_btn {
+            background: #ffffff;
+            border: 1px solid #1e3f22;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            margin-left: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .add_to_cart_btn:hover {
+            background: #1e3f22;
+            border-color: #1e3f22;
+            transform: scale(1.05);
+        }
+
+        .add_to_cart_btn:hover img {
+            filter: invert(1);
+        }
+
+        .add_to_cart_btn img {
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+            transition: filter 0.3s ease;
+        }
+
+        .product_visible_info h5 {
+            margin: 0;
+            font-size: 16px;
+            color: #1e3f22;
+            font-weight: 700;
+            font-family: 'Lora', Georgia, serif;
+            line-height: 1.4;
+        }
+
+        .product_visible_info .original_price {
+            font-size: 13px;
+            color: #8c9c8e;
+            text-decoration: line-through;
+            margin-top: 5px;
+            font-family: sans-serif;
+        }
+
+        .product_visible_info .visible_price {
+            font-size: 15px;
+            color: #b89240;
+            font-weight: 700;
+            margin-top: 2px;
+            letter-spacing: 0.5px;
+            font-family: sans-serif;
+        }
+
+        .product_card_box {
+            position: relative;
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #ede8de;
+            padding: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+
+        .product_card_box img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1122 / 1402;
+            object-fit: contain !important;
+            max-height: none !important;
+            border-radius: 16px;
+            display: block;
+            margin: 0 auto;
+            transition: transform 0.4s ease;
+        }
+
+        .product_card_box:hover img {
+            transform: scale(1.04);
+        }
+
+        /* Lớp thông tin phủ lên khi rê chuột (Hover Overlay) */
+        .product_hover_info {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(14, 43, 25, 0.88);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 25px 20px;
+            box-sizing: border-box;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+            z-index: 10;
+            border-radius: 20px;
+        }
+
+        .product_card_box:hover .product_hover_info {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product_hover_name {
+            font-size: 20px;
+            font-weight: 700;
+            font-family: 'Lora', Georgia, serif;
+            color: #ffffff;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .product_hover_price {
+            font-size: 18px;
+            font-weight: 700;
+            color: #e2c076;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .product_hover_desc {
+            font-size: 13.5px;
+            line-height: 1.55;
+            color: #e0e6e1;
+            font-family: 'Lora', Georgia, serif;
+            margin-bottom: 18px;
+            text-align: center;
+            padding: 0 30px;
+            max-height: 7.75em; /* Chiều cao tối đa bằng 5 dòng */
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+        }
+
+        .product_hover_btn {
+            display: inline-block;
+            background: #ffffff;
+            color: #1e3f22;
+            padding: 9px 22px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 13px;
+            text-decoration: none;
+            font-family: 'Lora', Georgia, serif;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .product_hover_btn:hover {
+            background: #e2c076;
+            color: #0A2F1D;
+        }
+
+        @media (max-width: 992px) {
+            .collection_section {
+                flex-direction: column;
+                gap: 40px;
+                padding: 60px 20px;
+            }
+
+            .featured_left_col {
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .featured_left_col br {
+                display: none;
+            }
+
+            .collection_section .rolls_container {
+                max-width: 100%;
+            }
+        }
+
+        /*================ INFORMATION ================*/
+        .info_section {
+            padding: 0 0 80px 0;
+            background: #ffffff;
+        }
+
+        .info_section .feature_header {
+            width: 100%;
+            background: #1e3f22;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .info_section .feature_header h2 {
+            color: #ffffff;
+            font-size: 26px;
+            font-weight: 400;
+            font-style: italic;
+            font-family: 'Lora', Georgia, serif;
+            letter-spacing: 0.5px;
+            margin: 0;
+        }
+
+        .info_container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            max-width: 1100px;
+            margin: 40px auto 0;
+            padding: 0 20px;
+        }
+
+        .info_img_box {
+            flex: 0.9;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        .info_img_box img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .info_table_box,
+        .info_text_box {
+            flex: 1.1;
+        }
+
+        .product_spec_table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Lora', Georgia, serif;
+            font-size: 14.5px;
+            color: #2c3e2e;
+        }
+
+        .product_spec_table th, 
+        .product_spec_table td {
+            padding: 12px 18px;
+            text-align: left;
+            border-bottom: 1px solid rgba(30, 63, 34, 0.12);
+        }
+
+        .product_spec_table th {
+            font-family: 'Lora', Georgia, serif;
+            font-size: 16px;
+            color: #1e3f22;
+            font-weight: 700;
+            border-bottom: 2px solid #1e3f22;
+        }
+
+        .product_spec_table td strong {
+            color: #1e3f22;
+            font-weight: 600;
+        }
+
+        @media (max-width: 992px) {
+            .info_container {
+                flex-direction: column;
+                gap: 40px;
+            }
+            .info_img_box {
+                max-width: 100%;
+            }
+        }
+
+        /*================ HDSD SECTION (HORIZONTAL ROW) ================*/
+        .hdsd_section {
+            padding: 0 0 80px 0;
+            background: #ffffff;
+            width: 100%;
+        }
+
+        .hdsd_section .feature_header {
+            width: 100%;
+            background: #1e3f22;
+            padding: 30px 20px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .hdsd_section .feature_header h2 {
+            color: #ffffff;
+            font-size: 26px;
+            font-weight: 400;
+            font-style: italic;
+            font-family: 'Lora', Georgia, serif;
+            letter-spacing: 0.5px;
+            margin: 0;
+        }
+
+        .hdsd_container {
+            display: flex;
+            justify-content: space-between;
+            gap: 24px;
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding: 0 20px;
+        }
+
+        .hdsd_item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: #fbf9f4;
+            padding: 24px 18px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s ease;
+        }
+
+        .hdsd_item:hover {
+            transform: translateY(-5px);
+        }
+
+        .hdsd_img_box {
+            width: 100%;
+            max-width: 200px;
+            aspect-ratio: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+
+        .hdsd_img_box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hdsd_step_header {
+            text-align: center;
+            margin-bottom: 16px;
+            width: 100%;
+        }
+
+        .hdsd_step_header strong {
+            display: block;
+            font-family: 'Lora', Georgia, serif;
+            font-size: 18px;
+            color: #1e3f22;
+            margin-bottom: 6px;
+            font-weight: 700;
+        }
+
+        .hdsd_step_header h4 {
+            font-family: 'Lora', Georgia, serif;
+            font-size: 15.5px;
+            color: #1e3f22;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .hdsd_step_desc {
+            font-family: 'Lora', Georgia, serif;
+            font-size: 13.5px;
+            color: #4a5c4d;
+            line-height: 1.65;
+            margin: 0;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        @media (max-width: 992px) {
+            .hdsd_container {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+            .hdsd_item {
+                width: 100%;
+                max-width: 450px;
+            }
+        }
+
+        /*================ FOOTER ================*/
+        .footer{
+
+            position:relative;
+
+            background:#1e3f22;
+
+            color:#fff;
+
+            padding:80px 0 30px;
+        }
+        .watermark{
+
+            position:absolute;
+
+            right:-50px;
+            bottom:-20px;
+
+            font-size:180px;
+
+            font-weight:bold;
+
+            letter-spacing:12px;
+
+            color:white;
+
+            opacity:.03;
+
+            pointer-events:none;
+
+            user-select:none;
+        }
+
+        .footer_container{
+
+            width:90%;
+            max-width:1400px;
+
+            margin:auto;
+
+            display:grid;
+
+            grid-template-columns:
+            2fr 1fr 1fr 1fr;
+
+            gap:70px;
+        }
+
+        .footer_brand h2{
+
+            font-size:38px;
+
+            letter-spacing:2px;
+
+            margin-bottom:20px;
+        }
+
+        .footer_brand p{
+
+            color:rgba(255,255,255,.8);
+
+            line-height:1.8;
+        }
+
+        .footer_contact{
+
+            margin-top:30px;
+        }
+
+        .footer_contact p{
+
+            margin-bottom:12px;
+        }
+
+        .footer_column h3{
+
+            margin-bottom:25px;
+
+            font-size:22px;
+        }
+
+        .footer_column a{
+
+            display:block;
+
+            color:rgba(255,255,255,.75);
+
+            text-decoration:none;
+
+            margin-bottom:16px;
+
+            transition:.3s;
+        }
+
+        .footer_column a:hover{
+
+            color:#d6c29a;
+
+            transform:translateX(5px);
+        }
+
+        .footer_bottom{
+
+            width:90%;
+
+            max-width:1400px;
+
+            margin:60px auto 0;
+
+            border-top:1px solid rgba(255,255,255,.15);
+
+            padding-top:25px;
+
+            text-align:center;
+
+            color:rgba(255,255,255,.6);
+        }
+
+        .payment{
+
+            display:flex;
+
+            gap:12px;
+
+            flex-wrap:wrap;
+
+            margin-top:18px;
+        }
+
+        .payment img{
+
+            width:50px;
+
+            padding:8px;
+
+            background:white;
+
+            border-radius:8px;
+
+            transition:.3s;
+        }
+
+        .payment img:hover{
+
+            transform:translateY(-4px);
+        }
+    </style>
+</head>
+<body>
+
+    <!---------------- HEADER SALE ---------------->
+    <div class="header_sale">
+        <h3>MUA CÀNG NHIỀU, ƯU ĐÃI CÀNG LỚN VỚI COMBO DEALS CỦA SCENTURA</h3>
+        <button>NHẬN ƯU ĐÃI</button>
+    </div>
+
+    <!---------------- NAVBAR ---------------->
+    <nav class="navbar">
+        <div class="navbar_container">
+            <!-- bên trái -->
+            <a href="index.html" class="brand">SCENTURA</a>
+
+            <div class="nav_menu">
+                <a href="index.html">Trang chủ</a>
+                <a href="intro.html">Giới thiệu</a>
+                <a href="products.html">Sản phẩm</a>
+                <a href="policy.html">Chính sách</a>
+                <a href="contact.html">Liên hệ</a>
+                <a href="login.html" id="auth-nav-link">Đăng Nhập</a>
+            </div>
+        </div>
+    </nav>
+
+    <!---------------- product slide roll ---------------->
+    <section class="rolls_section" id="RollsSection">
+        <div class="rolls_container">
+            <button class="roll_btn prev" id="RollPrev" aria-label="Previous">&#10094;</button>
+
+            <div class="rolls" id="RollsTrack">
+                <div class="roll">
+                    <img src="images/prd_rolls1.png" alt="index Roll 1">
+                </div>
+                <div class="roll">
+                    <img src="images/prd_rolls2.png" alt="index Roll 2">
+                </div>
+                <div class="roll">
+                    <img src="images/prd_rolls3.png" alt="index Roll 3">
+                </div>
+                <div class="roll">
+                    <img src="images/prd_rolls4.png" alt="index Roll 4">
+                </div>
+                <div class="roll">
+                    <img src="images/prd_rolls5.png" alt="index Roll 5">
+                </div>
+                <!-- <div class="roll">
+                    <img src="images/prd_rolls6.png" alt="index Roll 6">
+                </div> -->
+            </div>
+
+            <button class="roll_btn next" id="RollNext" aria-label="Next">&#10095;</button>
+
+            <div class="rolls_dots" id="RollsDots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+                <span class="dot" data-index="3"></span>
+                <span class="dot" data-index="4"></span>
+                <!-- <span class="dot" data-index="5"></span> -->
+            </div>
+        </div>
+    </section>
+
+
+    <!---------------- CONTENT PLACEHOLDER ---------------->
+    
+    <main class="main_content">
+        
+        <div class="search_wrapper">
+            <div class="search_box">
+                <input type="text" placeholder="Tìm kiếm sản phẩm..." class="search_input">
+                <button class="search_btn" aria-label="Tìm kiếm">
+                    <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="page_header">
+            <h1>Bộ Sưu Tập Scentura</h1>
+            <p>Khám phá dòng miếng dán chăm sóc trang phục tích hợp công nghệ thấm hút mồ hôi và hương thơm tinh tế cho ngày dài năng động.</p>
+        </div>
+
+       
+    </main>
+
+    
+
+    <!---------------- PRODUCT LIST PLACEHOLDER ---------------->
+
+     <!-- Scentura Trial Box -->
+        <section class="collection_section" id="trialSection" style="margin-top: 40px; border-top: 1px solid rgba(30, 63, 34, 0.05); padding-top: 40px;">
+            <div class="featured_left_col">
+                <h2>Scentura<br> Trial Box</h2>
+                <p>Với 06 miếng vừa đủ, hộp trải nghiệm giúp bạn nhẹ nhàng làm quen với Scentura từ cách sử dụng, độ bám trên trang phục đến những thay đổi nhỏ trong quá trình sản phẩm hoạt động.<br>
+
+Một khởi đầu gọn nhẹ để bạn lắng nghe trải nghiệm của chính mình và tìm ra lựa chọn phù hợp với từng nhịp sống.</p>
+            </div>
+
+            <div class="rolls_container">
+                <button class="roll_btn prev" id="topRollPrev" aria-label="Previous">&#10094;</button>
+
+                <div class="rolls" id="topRollsTrack">
+                    <div class="roll">
+                        <div class="product_card_box">
+                            <img src="images/prd_trial1.jpg" alt="Campus Soft Citrus">
+                            <div class="product_hover_info">
+                                <h4 class="product_hover_name">Campus Soft Citrus</h4>
+                                <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-TR-001</div>
+                                <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Cam chanh</div>
+                                <div class="product_hover_price">49.000đ</div>
+                                <p class="product_hover_desc">Mùi năng động, phù hợp với sinh viên thường xuyên hoạt động ngoài lớp học hoặc di chuyển nhiều trong ngày.</p>
+                                <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                            </div>
+                        </div>
+                        <div class="product_visible_info">
+                            <h5>Campus Soft Citrus</h5>
+                            <div class="original_price">59.000đ</div>
+                            <div class="visible_price">49.000đ</div>
+                        </div>
+                    </div>
+
+                    <div class="roll">
+                        <div class="product_card_box">
+                            <img src="images/prd_trial2.jpg" alt="Commute Citrus Rush">
+                            <div class="product_hover_info">
+                                <h4 class="product_hover_name">Commute Citrus Rush</h4>
+                                <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-TR-002</div>
+                                <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Cam chanh</div>
+                                <div class="product_hover_price">49.000đ</div>
+                                <p class="product_hover_desc">Hương cam chanh tươi mát, phù hợp với người thường xuyên di chuyển ngoài trời, đi xe máy hoặc hoạt động trong thời tiết nóng.</p>
+                                <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                            </div>
+                        </div>
+                        <div class="product_visible_info">
+                            <h5>Commute Citrus Rush</h5>
+                            <div class="original_price">59.000đ</div>
+                            <div class="visible_price">49.000đ</div>
+                        </div>
+                    </div>
+
+                    <div class="roll">
+                        <div class="product_card_box">
+                            <img src="images/prd_trial3.jpg" alt="Social White Tea Elegance">
+                            <div class="product_hover_info">
+                                <h4 class="product_hover_name">Social White Tea Elegance</h4>
+                                <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-TR-003</div>
+                                <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Trà trắng</div>
+                                <div class="product_hover_price">49.000đ</div>
+                                <p class="product_hover_desc">Mùi trà trắng thanh lịch, phù hợp cho các buổi gặp gỡ, hẹn hò, phỏng vấn hoặc những tình huống cần tạo cảm giác chỉn chu.</p>
+                                <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                            </div>
+                        </div>
+                        <div class="product_visible_info">
+                            <h5>Social White Tea Elegance</h5>
+                            <div class="original_price">59.000đ</div>
+                            <div class="visible_price">49.000đ</div>
+                        </div>
+                    </div>
+
+                    <div class="roll">
+                        <div class="product_card_box">
+                            <img src="images/prd_trial4.jpg" alt="Sensitive White Tea Light">
+                            <div class="product_hover_info">
+                                <h4 class="product_hover_name">Sensitive White Tea Light</h4>
+                                <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-TR-004</div>
+                                <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Trà trắng nhẹ</div>
+                                <div class="product_hover_price">49.000đ</div>
+                                <p class="product_hover_desc">Hương trà trắng nhẹ nhàng, phù hợp với người thích mùi hương tinh tế, không quá nồng hoặc sử dụng trong không gian kín.</p>
+                                <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                            </div>
+                        </div>
+                        <div class="product_visible_info">
+                            <h5>Sensitive White Tea Light</h5>
+                            <div class="original_price">59.000đ</div>
+                            <div class="visible_price">49.000đ</div>
+                        </div>
+                    </div>
+
+                    <div class="roll">
+                        <div class="product_card_box">
+                            <img src="images/prd_trial5.jpg" alt="Workday Soft Musk">
+                            <div class="product_hover_info">
+                                <h4 class="product_hover_name">Workday Soft Musk</h4>
+                                <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-TR-005</div>
+                                <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Xạ hương</div>
+                                <div class="product_hover_price">49.000đ</div>
+                                <p class="product_hover_desc">Mùi xạ hương mềm mại, phù hợp với môi trường công sở, họp hành hoặc những ngày làm việc cần duy trì cảm giác sạch sẽ, tự tin.</p>
+                                <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                            </div>
+                        </div>
+                        <div class="product_visible_info">
+                            <h5>Workday Soft Musk</h5>
+                            <div class="original_price">59.000đ</div>
+                            <div class="visible_price">49.000đ</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="roll_btn next" id="topRollNext" aria-label="Next">&#10095;</button>
+
+                <div class="rolls_dots" id="topRollsDots">
+                    <span class="dot active" data-index="0"></span>
+                    <span class="dot" data-index="1"></span>
+                    <span class="dot" data-index="2"></span>
+                    <span class="dot" data-index="3"></span>
+                    <span class="dot" data-index="4"></span>
+                </div>
+            </div>
+        </section>
+    <!-- Scentura Workday Collection -->
+    <section class="collection_section" id="workdaySection">
+        <div class="featured_left_col">
+            <h2>Scentura<br> Workday Collection</h2>
+            <p>Dành cho người đi làm văn phòng, mặc áo sơ mi, ngồi trong phòng kín, họp nhóm hoặc gặp khách hàng. Cần duy trì hình ảnh chỉn chu và cảm giác sạch sẽ trong suốt ngày làm việc.</p>
+        </div>
+
+        <div class="rolls_container">
+            <button class="roll_btn prev" id="workdayPrev" aria-label="Previous">&#10094;</button>
+
+            <div class="rolls" id="workdayTrack">
+                <div class="roll">
+                    <div class="product_card_box">
+                        <img src="images/work_day_clean_cotton.png" alt="Workday Clean Cotton">
+                        <div class="product_hover_info">
+                            <h4 class="product_hover_name">Workday Clean Cotton</h4>
+                            <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-WD-001</div>
+                            <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Cotton sạch</div>
+                            <div class="product_hover_price">79.000đ</div>
+                            <p class="product_hover_desc">Phù hợp sử ngày tại văn phòng, tạo cảm giác sạch và dễ chịu</p>
+                            <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                        </div>
+                    </div>
+                    <div class="product_visible_info">
+                        <h5>Workday Clean Cotton</h5>
+                        <div class="original_price">89.000đ</div>
+                        <div class="visible_price">79.000đ</div>
+                    </div>
+                </div>
+
+                <div class="roll">
+                    <div class="product_card_box">
+                        <img src="images/work_day_white_tea.png" alt="Workday White Tea">
+                        <div class="product_hover_info">
+                            <h4 class="product_hover_name">Workday White Tea</h4>
+                            <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-WD-002</div>
+                            <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Trà trắng</div>
+                            <div class="product_hover_price">79.000đ</div>
+                            <p class="product_hover_desc">Mùi thanh nhẹ, phù hợp môi trường phòng kín và không gian công sở</p>
+                            <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                        </div>
+                    </div>
+                    <div class="product_visible_info">
+                        <h5>Workday White Tea</h5>
+                        <div class="original_price">89.000đ</div>
+                        <div class="visible_price">79.000đ</div>
+                    </div>
+                </div>
+
+                <div class="roll">
+                    <div class="product_card_box">
+                        <img src="images/work_day_fresh_linen.png" alt="Workday Fresh Linen">
+                        <div class="product_hover_info">
+                            <h4 class="product_hover_name">Workday Fresh Linen</h4>
+                            <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-WD-003</div>
+                            <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Vải sạch</div>
+                            <div class="product_hover_price">79.000đ</div>
+                            <p class="product_hover_desc">Gợi cảm giác áo quần sạch sẽ, phù hợp với áo sơ mi và trang phục công sở</p>
+                            <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                        </div>
+                    </div>
+                    <div class="product_visible_info">
+                        <h5>Workday Fresh Linen</h5>
+                        <div class="original_price">89.000đ</div>
+                        <div class="visible_price">79.000đ</div>
+                    </div>
+                </div>
+
+                <div class="roll">
+                    <div class="product_card_box">
+                        <img src="images/work_day_soft_musk.png" alt="Workday Soft Musk">
+                        <div class="product_hover_info">
+                            <h4 class="product_hover_name">Workday Soft Musk</h4>
+                            <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-WD-004</div>
+                            <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Musk</div>
+                            <div class="product_hover_price">79.000đ</div>
+                            <p class="product_hover_desc">Tạo cảm giác chỉn chu, trưởng thành, phù hợp khi gặp đồng nghiệp hoặc đối tác</p>
+                            <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                        </div>
+                    </div>
+                    <div class="product_visible_info">
+                        <h5>Workday Soft Musk</h5>
+                        <div class="original_price">89.000đ</div>
+                        <div class="visible_price">79.000đ</div>
+                    </div>
+                </div>
+
+                <div class="roll">
+                    <div class="product_card_box">
+                        <img src="images/work_day_office_jasmine.png" alt="Workday Office Neutral">
+                        <div class="product_hover_info">
+                            <h4 class="product_hover_name">Workday Office Neutral</h4>
+                            <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-WD-005</div>
+                            <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Hoa lài</div>
+                            <div class="product_hover_price">79.000đ</div>
+                            <p class="product_hover_desc">Mùi rất nhẹ, phù hợp với người làm việc trong phòng kín hoặc không thích hương rõ</p>
+                            <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                        </div>
+                    </div>
+                    <div class="product_visible_info">
+                        <h5>Workday Office Neutral</h5>
+                        <div class="original_price">89.000đ</div>
+                        <div class="visible_price">79.000đ</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="roll_btn next" id="workdayNext" aria-label="Next">&#10095;</button>
+
+            <div class="rolls_dots" id="workdayDots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+                <span class="dot" data-index="3"></span>
+                <span class="dot" data-index="4"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scentura Campus Collection -->
+    <section class="collection_section" id="campusSection">
+        <div class="featured_left_col">
+            <h2>Scentura<br> Campus Collection</h2>
+            <p>Dành cho học sinh, sinh viên năng động, học tập tại trường lớp hay hoạt động câu lạc bộ ngoài trời. Cần hương thơm thanh khiết, trẻ trung và tự nhiên.</p>
+        </div>
+
+        <div class="rolls_container">
+            <button class="roll_btn prev" id="campusPrev" aria-label="Previous">&#10094;</button>
+
+            <div class="rolls" id="campusTrack">
+                <div class="roll">
+                    <div class="product_card_box">
+                        <img src="images/campus_light_cotton.png" alt="Campus Light Cotton">
+                        <div class="product_hover_info">
+                            <h4 class="product_hover_name">Campus Light Cotton</h4>
+                            <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-CP-001</div>
+                            <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Cotton</div>
+                            <div class="product_hover_price">79.000đ</div>
+                            <p class="product_hover_desc">Phù hợp với ngày đi học thông thường, dễ dùng và không gây chú ý</p>
+                            <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                        </div>
+                    </div>
+                    <div class="product_visible_info">
+                        <h5>Campus Light Cotton</h5>
+                        <div class="original_price">89.000đ</div>
+                        <div class="visible_price">79.000đ</div>
+                    </div>
+                </div>
+
+                <div class="roll">
+                    <div class="product_card_box">
+                        <img src="images/campus_fresh_tea.png" alt="Campus Fresh Tea">
+                        <div class="product_hover_info">
+                            <h4 class="product_hover_name">Campus Fresh Tea</h4>
+                            <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-CP-002</div>
+                            <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Trà xanh</div>
+                            <div class="product_hover_price">79.000đ</div>
+                            <p class="product_hover_desc">Tạo cảm giác sạch và tươi mới cho ngày học dài hoặc học nhóm</p>
+                            <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                        </div>
+                    </div>
+                    <div class="product_visible_info">
+                        <h5>Campus Fresh Tea</h5>
+                        <div class="original_price">89.000đ</div>
+                        <div class="visible_price">79.000đ</div>
+                    </div>
+                </div>
+
+                <div class="roll">
+                    <div class="product_card_box">
+                        <img src="images/campus_soft_citrus.png" alt="Campus Soft Citrus">
+                        <div class="product_hover_info">
+                            <h4 class="product_hover_name">Campus Soft Citrus</h4>
+                            <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-CP-003</div>
+                            <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Cam chanh</div>
+                            <div class="product_hover_price">79.000đ</div>
+                            <p class="product_hover_desc">Mùi năng động, phù hợp với sinh viên thường xuyên hoạt động ngoài lớp học</p>
+                            <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                        </div>
+                    </div>
+                    <div class="product_visible_info">
+                        <h5>Campus Soft Citrus</h5>
+                        <div class="original_price">89.000đ</div>
+                        <div class="visible_price">79.000đ</div>
+                    </div>
+                </div>
+
+                <div class="roll">
+                    <div class="product_card_box">
+                        <img src="images/campus_pear_clean.png" alt="Campus Pear Clean">
+                        <div class="product_hover_info">
+                            <h4 class="product_hover_name">Campus Pear Clean</h4>
+                            <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-CP-004</div>
+                            <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Lê sạch</div>
+                            <div class="product_hover_price">79.000đ</div>
+                            <p class="product_hover_desc">Mùi tươi nhưng không quá ngọt, phù hợp khi đi học rồi đi chơi sau giờ học</p>
+                            <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                        </div>
+                    </div>
+                    <div class="product_visible_info">
+                        <h5>Campus Pear Clean</h5>
+                        <div class="original_price">89.000đ</div>
+                        <div class="visible_price">79.000đ</div>
+                    </div>
+                </div>
+
+                <div class="roll">
+                    <div class="product_card_box">
+                        <img src="images/campus_fresh_soft.png" alt="Campus Fresh Soap">
+                        <div class="product_hover_info">
+                            <h4 class="product_hover_name">Campus Fresh Soap</h4>
+                            <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-CP-005</div>
+                            <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Xà phòng sạch</div>
+                            <div class="product_hover_price">79.000đ</div>
+                            <p class="product_hover_desc">Gợi cảm giác sạch sẽ, phù hợp trong các tình huống học nhóm, thuyết trình</p>
+                            <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                        </div>
+                    </div>
+                    <div class="product_visible_info">
+                        <h5>Campus Fresh Soap</h5>
+                        <div class="original_price">89.000đ</div>
+                        <div class="visible_price">79.000đ</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="roll_btn next" id="campusNext" aria-label="Next">&#10095;</button>
+
+            <div class="rolls_dots" id="campusDots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+                <span class="dot" data-index="3"></span>
+                <span class="dot" data-index="4"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scentura Commute & Outdoor Collection -->
+    <section class="collection_section" id="commuteSection">
+        <div class="featured_left_col">
+            <h2>Scentura<br> Commute & Outdoor</h2>
+            <p>Thích hợp cho người thường xuyên di chuyển ngoài trời, đi lại nhiều dưới thời tiết nắng nóng. Cần khả năng thấm hút mồ hôi mạnh mẽ và hương sảng khoái.</p>
+        </div>
+
+        <div class="rolls_container">
+            <button class="roll_btn prev" id="commutePrev" aria-label="Previous">&#10094;</button>
+
+            <div class="rolls" id="commuteTrack">
+                <div class="roll">
+                    <div class="product_card_box">
+                        <img src="images/commute_mint_cool.png" alt="Commute Mint Cool">
+                        <div class="product_hover_info">
+                            <h4 class="product_hover_name">Commute Mint Cool</h4>
+                            <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-CO-001</div>
+                            <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Bạc hà mát</div>
+                            <div class="product_hover_price">79.000đ</div>
+                            <p class="product_hover_desc">Phù hợp với người đi xe máy hoặc di chuyển dưới thời tiết nóng</p>
+                            <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                        </div>
+                    </div>
+                    <div class="product_visible_info">
+                        <h5>Commute Mint Cool</h5>
+                        <div class="original_price">89.000đ</div>
+                        <div class="visible_price">79.000đ</div>
+                    </div>
+                </div>
+
+                <div class="roll">
+                    <div class="product_card_box">
+                        <img src="images/commute_aqua_fresh.png" alt="Commute Aqua Fresh">
+                        <div class="product_hover_info">
+                            <h4 class="product_hover_name">Commute Aqua Fresh</h4>
+                            <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-CO-002</div>
+                            <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Aqua tươi mát</div>
+                            <div class="product_hover_price">79.000đ</div>
+                            <p class="product_hover_desc">Mùi sạch, unisex, phù hợp với người thường xuyên đi học hoặc đi làm xa</p>
+                            <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                        </div>
+                    </div>
+                    <div class="product_visible_info">
+                        <h5>Commute Aqua Fresh</h5>
+                        <div class="original_price">89.000đ</div>
+                        <div class="visible_price">79.000đ</div>
+                    </div>
+                </div>
+
+                <div class="roll">
+                    <div class="product_card_box">
+                        <img src="images/commute_citrus_rush.png" alt="Commute Citrus Rush">
+                        <div class="product_hover_info">
+                            <h4 class="product_hover_name">Commute Citrus Rush</h4>
+                            <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-CO-003</div>
+                            <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Cam chanh năng động</div>
+                            <div class="product_hover_price">79.000đ</div>
+                            <p class="product_hover_desc">Tạo cảm giác tươi mới, phù hợp với những ngày nắng nóng hoặc vận động nhiều</p>
+                            <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                        </div>
+                    </div>
+                    <div class="product_visible_info">
+                        <h5>Commute Citrus Rush</h5>
+                        <div class="original_price">89.000đ</div>
+                        <div class="visible_price">79.000đ</div>
+                    </div>
+                </div>
+
+                <div class="roll">
+                    <div class="product_card_box">
+                        <img src="images/commute_green_tea_air.png" alt="Commute Green Tea Air">
+                        <div class="product_hover_info">
+                            <h4 class="product_hover_name">Commute Green Tea Air</h4>
+                            <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-CO-004</div>
+                            <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Trà xanh</div>
+                            <div class="product_hover_price">79.000đ</div>
+                            <p class="product_hover_desc">Mùi nhẹ, sạch, phù hợp sau quá trình di chuyển ngoài trời</p>
+                            <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                        </div>
+                    </div>
+                    <div class="product_visible_info">
+                        <h5>Commute Green Tea Air</h5>
+                        <div class="original_price">89.000đ</div>
+                        <div class="visible_price">79.000đ</div>
+                    </div>
+                </div>
+
+                <div class="roll">
+                    <div class="product_card_box">
+                        <img src="images/commute_fresh_sport.png" alt="Commute Fresh Sport">
+                        <div class="product_hover_info">
+                            <h4 class="product_hover_name">Commute Fresh Sport</h4>
+                            <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-CO-005</div>
+                            <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Sea salt</div>
+                            <div class="product_hover_price">79.000đ</div>
+                            <p class="product_hover_desc">Phù hợp với người hoạt động ngoài trời hoặc có lịch trình di chuyển liên tục</p>
+                            <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                        </div>
+                    </div>
+                    <div class="product_visible_info">
+                        <h5>Commute Fresh Sport</h5>
+                        <div class="original_price">89.000đ</div>
+                        <div class="visible_price">79.000đ</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="roll_btn next" id="commuteNext" aria-label="Next">&#10095;</button>
+
+            <div class="rolls_dots" id="commuteDots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+                <span class="dot" data-index="3"></span>
+                <span class="dot" data-index="4"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scentura Social Confidence Collection -->
+    <section class="collection_section" id="socialSection">
+        <div class="featured_left_col">
+            <h2>Scentura<br> Social Confidence</h2>
+            <p>Dành cho những buổi hẹn hò, tiệc tùng hoặc gặp gỡ đối tác quan trọng. Cần sự tự tin sang trọng, quyến rũ và tỏa hương lôi cuốn.</p>
+        </div>
+
+        <div class="rolls_container">
+            <button class="roll_btn prev" id="socialPrev" aria-label="Previous">&#10094;</button>
+
+            <div class="rolls" id="socialTrack">
+                <div class="roll">
+                    <div class="product_card_box">
+                        <img src="images/social_clean_musk.png" alt="Social Clean Musk">
+                        <div class="product_hover_info">
+                            <h4 class="product_hover_name">Social Clean Musk</h4>
+                            <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-SO-001</div>
+                            <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Musk sạch</div>
+                            <div class="product_hover_price">79.000đ</div>
+                            <p class="product_hover_desc">Phù hợp khi gặp khách hàng, networking hoặc giao tiếp trong môi trường chuyên nghiệp</p>
+                            <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                        </div>
+                    </div>
+                    <div class="product_visible_info">
+                        <h5>Social Clean Musk</h5>
+                        <div class="original_price">89.000đ</div>
+                        <div class="visible_price">79.000đ</div>
+                    </div>
+                </div>
+
+                <div class="roll">
+                    <div class="product_card_box">
+                        <img src="images/social_white_tea_elegance.png" alt="Social White Tea Elegance">
+                        <div class="product_hover_info">
+                            <h4 class="product_hover_name">Social White Tea Elegance</h4>
+                            <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-SO-002</div>
+                            <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Trà trắng thanh lịch</div>
+                            <div class="product_hover_price">79.000đ</div>
+                            <p class="product_hover_desc">Phù hợp với phỏng vấn, pitching hoặc những buổi gặp quan trọng</p>
+                            <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                        </div>
+                    </div>
+                    <div class="product_visible_info">
+                        <h5>Social White Tea Elegance</h5>
+                        <div class="original_price">89.000đ</div>
+                        <div class="visible_price">79.000đ</div>
+                    </div>
+                </div>
+
+                <div class="roll">
+                    <div class="product_card_box">
+                        <img src="images/social_pear_rose.png" alt="Social Pear Rose">
+                        <div class="product_hover_info">
+                            <h4 class="product_hover_name">Social Pear Rose</h4>
+                            <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-SO-003</div>
+                            <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Lê và hoa hồng nhẹ</div>
+                            <div class="product_hover_price">79.000đ</div>
+                            <p class="product_hover_desc">Mùi mềm và tinh tế, phù hợp cho hẹn hò hoặc gặp gỡ riêng</p>
+                            <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                        </div>
+                    </div>
+                    <div class="product_visible_info">
+                        <h5>Social Pear Rose</h5>
+                        <div class="original_price">89.000đ</div>
+                        <div class="visible_price">79.000đ</div>
+                    </div>
+                </div>
+
+                <div class="roll">
+                    <div class="product_card_box">
+                        <img src="images/social_soft_floral.png" alt="Social Soft Floral">
+                        <div class="product_hover_info">
+                            <h4 class="product_hover_name">Social Soft Floral</h4>
+                            <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-SO-004</div>
+                            <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Hoa nhẹ tinh tế</div>
+                            <div class="product_hover_price">79.000đ</div>
+                            <p class="product_hover_desc">Phù hợp với tiệc, sự kiện hoặc các buổi gặp gỡ đông người</p>
+                            <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                        </div>
+                    </div>
+                    <div class="product_visible_info">
+                        <h5>Social Soft Floral</h5>
+                        <div class="original_price">89.000đ</div>
+                        <div class="visible_price">79.000đ</div>
+                    </div>
+                </div>
+
+                <div class="roll">
+                    <div class="product_card_box">
+                        <img src="images/social_amber_cotton.png" alt="Social Amber Cotton">
+                        <div class="product_hover_info">
+                            <h4 class="product_hover_name">Social Amber Cotton</h4>
+                            <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-SO-005</div>
+                            <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Amber cotton ấm nhẹ</div>
+                            <div class="product_hover_price">79.000đ</div>
+                            <p class="product_hover_desc">Tạo cảm giác gần gũi nhưng không nồng, phù hợp khi tiếp xúc gần</p>
+                            <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                        </div>
+                    </div>
+                    <div class="product_visible_info">
+                        <h5>Social Amber Cotton</h5>
+                        <div class="original_price">89.000đ</div>
+                        <div class="visible_price">79.000đ</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="roll_btn next" id="socialNext" aria-label="Next">&#10095;</button>
+
+            <div class="rolls_dots" id="socialDots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+                <span class="dot" data-index="3"></span>
+                <span class="dot" data-index="4"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scentura Sensitive Collection -->
+    <section class="collection_section" id="sensitiveSection">
+        <div class="featured_left_col">
+            <h2>Scentura<br> Sensitive Collection</h2>
+            <p>Dành cho làn da cực kỳ nhạy cảm hoặc những ai yêu thích sự tinh giản. Thiết kế dịu nhẹ, không mùi hoặc có mùi cực dịu, hạn chế tối đa kích ứng.</p>
+        </div>
+
+        <div class="rolls_container">
+            <button class="roll_btn prev" id="sensitivePrev" aria-label="Previous">&#10094;</button>
+
+            <div class="rolls" id="sensitiveTrack">
+                <div class="roll">
+                    <div class="product_card_box">
+                        <img src="images/sensitive_unscented.png" alt="Sensitive Unscented">
+                        <div class="product_hover_info">
+                            <h4 class="product_hover_name">Sensitive Unscented</h4>
+                            <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-SE-001</div>
+                            <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Không mùi</div>
+                            <div class="product_hover_price">79.000đ</div>
+                            <p class="product_hover_desc">Tập trung vào thấm hút và tín hiệu cảnh báo riêng tư, không có hương thơm</p>
+                            <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                        </div>
+                    </div>
+                    <div class="product_visible_info">
+                        <h5>Sensitive Unscented</h5>
+                        <div class="original_price">89.000đ</div>
+                        <div class="visible_price">79.000đ</div>
+                    </div>
+                </div>
+
+                <div class="roll">
+                    <div class="product_card_box">
+                        <img src="images/sensitive_soft_neutral.png" alt="Sensitive Soft Neutral">
+                        <div class="product_hover_info">
+                            <h4 class="product_hover_name">Sensitive Soft Neutral</h4>
+                            <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-SE-002</div>
+                            <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Trung tính nhẹ</div>
+                            <div class="product_hover_price">79.000đ</div>
+                            <p class="product_hover_desc">Mùi rất nhẹ, phù hợp với văn phòng kín hoặc người không thích hương rõ</p>
+                            <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                        </div>
+                    </div>
+                    <div class="product_visible_info">
+                        <h5>Sensitive Soft Neutral</h5>
+                        <div class="original_price">89.000đ</div>
+                        <div class="visible_price">79.000đ</div>
+                    </div>
+                </div>
+
+                <div class="roll">
+                    <div class="product_card_box">
+                        <img src="images/sensitive_light_cotton.png" alt="Sensitive Light Cotton">
+                        <div class="product_hover_info">
+                            <h4 class="product_hover_name">Sensitive Light Cotton</h4>
+                            <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-SE-003</div>
+                            <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Cotton rất nhẹ</div>
+                            <div class="product_hover_price">79.000đ</div>
+                            <p class="product_hover_desc">Dễ dùng cho người mới thử, tạo cảm giác sạch nhưng không nồng</p>
+                            <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                        </div>
+                    </div>
+                    <div class="product_visible_info">
+                        <h5>Sensitive Light Cotton</h5>
+                        <div class="original_price">89.000đ</div>
+                        <div class="visible_price">79.000đ</div>
+                    </div>
+                </div>
+
+                <div class="roll">
+                    <div class="product_card_box">
+                        <img src="images/sensitive_white_tea_light.png" alt="Sensitive White Tea Light">
+                        <div class="product_hover_info">
+                            <h4 class="product_hover_name">Sensitive White Tea Light</h4>
+                            <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-SE-004</div>
+                            <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Trà trắng nhẹ</div>
+                            <div class="product_hover_price">79.000đ</div>
+                            <p class="product_hover_desc">Phiên bản trà trắng nhẹ hơn, phù hợp người nhạy cảm với mùi</p>
+                            <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                        </div>
+                    </div>
+                    <div class="product_visible_info">
+                        <h5>Sensitive White Tea Light</h5>
+                        <div class="original_price">89.000đ</div>
+                        <div class="visible_price">79.000đ</div>
+                    </div>
+                </div>
+
+                <div class="roll">
+                    <div class="product_card_box">
+                        <img src="images/sensitive_clean_basic.png" alt="Sensitive Clean Basic">
+                        <div class="product_hover_info">
+                            <h4 class="product_hover_name">Sensitive Clean Basic</h4>
+                            <div style="font-size: 12px; color: #e2c076; margin-top: -4px; margin-bottom: 6px; font-family: sans-serif; letter-spacing: 1px;">SC-SE-005</div>
+                            <div style="font-size: 13px; color: #ffffff; margin-bottom: 8px; opacity: 0.85; font-family: 'Lora', Georgia, serif;">Nhóm mùi: Sạch nhẹ tối giản</div>
+                            <div class="product_hover_price">79.000đ</div>
+                            <p class="product_hover_desc">Phù hợp sử dụng hằng ngày, unisex và không gây cảm giác quá nổi bật</p>
+                            <a href="#" class="product_hover_btn">Xem Chi Tiết</a>
+                        </div>
+                    </div>
+                    <div class="product_visible_info">
+                        <h5>Sensitive Clean Basic</h5>
+                        <div class="original_price">89.000đ</div>
+                        <div class="visible_price">79.000đ</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="roll_btn next" id="sensitiveNext" aria-label="Next">&#10095;</button>
+
+            <div class="rolls_dots" id="sensitiveDots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+                <span class="dot" data-index="3"></span>
+                <span class="dot" data-index="4"></span>
+            </div>
+        </div>
+    </section>
+
+    <!---------------- information ---------------->
+    <section class="info_section">
+        <div class="feature_header">
+            <h2>Thông Tin Sản Phẩm</h2>
+        </div>
+        <div class="info_container">
+            <div class="info_img_box">
+                <img src="images/unknown_insert_product.png" alt="Thông tin sản phẩm">
+            </div>
+            <div class="info_table_box">
+                <table class="product_spec_table">
+                    <thead>
+                        <tr>
+                            <th>Thông tin</th>
+                            <th>Nội dung</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Quy cách</strong></td>
+                            <td>10 miếng/Standard Box , 06 miếng/Trial Box</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mùi hương</strong></td>
+                            <td>Cotton sạch</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Chất liệu</strong></td>
+                            <td>Vải không dệt, lớp thấm hút, chỉ thị màu, vi nang hương và keo chuyên dụng cho vải</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cách dùng</strong></td>
+                            <td>Dán vào mặt trong trang phục</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hình thức</strong></td>
+                            <td>Sử dụng một lần</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Thương hiệu</strong></td>
+                            <td>SCENTURA</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nguồn gốc thương hiệu</strong></td>
+                            <td>Việt Nam</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nơi sản xuất</strong></td>
+                            <td>Việt Nam</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bảo quản</strong></td>
+                            <td>Nơi khô ráo, tránh ánh nắng trực tiếp</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+
+    <!--HDSD-->
+    <section class="hdsd_section">
+        <div class="feature_header">
+            <h2>Hướng Dẫn Sử Dụng</h2>
+        </div>
+        <div class="hdsd_container">
+            <div class="hdsd_item">
+                <div class="hdsd_img_box">
+                    <img src="images/hdsd1.png" alt="hdsd1">
+                </div>
+                <div class="hdsd_step_header">
+                    <strong>Bước 1</strong>
+                    <h4>Chuẩn bị bề mặt vải</h4>
+                </div>
+                <p class="hdsd_step_desc">Đảm bảo phần vải bên trong áo tại khu vực dưới cánh tay sạch và khô ráo trước khi sử dụng để keo bám ổn định.</p>
+            </div>
+
+            <div class="hdsd_item">
+                <div class="hdsd_img_box">
+                    <img src="images/hdsd2.png" alt="hdsd2">
+                </div>
+                <div class="hdsd_step_header">
+                    <strong>Bước 2</strong>
+                    <h4>Bóc lớp giấy bảo vệ</h4>
+                </div>
+                <p class="hdsd_step_desc">Nhẹ nhàng bóc lớp giấy phía sau. Hạn chế chạm tay trực tiếp vào keo dán để giữ độ bám tốt nhất.</p>
+            </div>
+
+            <div class="hdsd_item">
+                <div class="hdsd_img_box">
+                    <img src="images/hdsd3.png" alt="hdsd3">
+                </div>
+                <div class="hdsd_step_header">
+                    <strong>Bước 3</strong>
+                    <h4>Dán kín đáo vào áo</h4>
+                </div>
+                <p class="hdsd_step_desc">Đặt miếng dán vào mặt trong áo dưới cánh tay rồi miết nhẹ để bám đều. Lưu ý không dán trực tiếp lên da.</p>
+            </div>
+
+            <div class="hdsd_item">
+                <div class="hdsd_img_box">
+                    <img src="images/hdsd4.png" alt="hdsd4">
+                </div>
+                <div class="hdsd_step_header">
+                    <strong>Bước 4</strong>
+                    <h4>Quan sát tín hiệu màu</h4>
+                </div>
+                <p class="hdsd_step_desc">Lớp chỉ thị đổi màu khi ẩm để nhắc nhở bạn chủ động làm mới cơ thể hoặc thay thế miếng dán mới.</p>
+            </div>
+        </div>
+    </section>
+
+    <!--NOTE-->
+    <section class="info_section">
+        <div class="feature_header">
+            <h2>LƯU Ý KHI SỬ DỤNG</h2>
+        </div>
+        <div class="info_container">
+            <div class="info_img_box">
+                <img src="images/product_note.jpg" alt="Lưu ý khi sử dụng">
+            </div>
+            <div class="info_text_box">
+                <h2>Một vài điều nhỏ để Scentura đồng hành cùng bạn đúng cách </h2>
+                <p>
+                    <strong>1.</strong> Mỗi miếng Scentura được thiết kế cho một lần sử dụng. Sau khi tháo khỏi trang phục, bạn nên bỏ miếng dán và thay bằng sản phẩm mới khi cần.<br><br>
+                    <strong>2.</strong> Không sử dụng nếu miếng dán đã bị rách, ẩm, bẩn hoặc biến dạng trước khi mở.<br><br>
+                    <strong>3.</strong> Với những chất liệu vải mỏng, dễ xù hoặc có bề mặt đặc biệt, hãy thử độ bám trên một vùng nhỏ và khuất trước khi sử dụng.<br><br>
+                    <strong>4.</strong> Tín hiệu màu là lời nhắc hỗ trợ để bạn chủ động kiểm tra trang phục, không phải kết quả đo chính xác mức độ mùi cơ thể.<br><br>
+                    <strong>5.</strong> Scentura là phụ kiện chăm sóc cá nhân, không phải thiết bị y tế và không thay thế thói quen vệ sinh cơ thể hằng ngày.<br><br>
+                    <strong>6.</strong> Sử dụng đúng cách để mỗi trải nghiệm luôn nhẹ nhàng, kín đáo và vừa đủ.<br><br>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!---------------- FOOTER ---------------->
+    <footer class="footer">
+
+        <div class="footer_container">
+
+            <!-- Brand -->
+            <div class="footer_brand">
+
+                <h2>SCENTURA</h2>
+
+                <p>Stay Fresh Stay Confident</p>
+
+                <div class="footer_contact">
+                    <p>📍 <a href="https://maps.app.goo.gl/hbhbMCv3RJ6fPVcH6" target="_blank" style="color: inherit; text-decoration: none; border-bottom: 1px dashed rgba(255,255,255,0.4);">2 Mai Thị Lựu, Phường Sài Gòn, Hồ Chí Minh, Việt Nam</a></p>
+                    <p>📞 0905 145 789</p>
+                    <p>✉ contact@scentura.com</p>
+                </div>
+
+            </div>
+
+            <!-- Menu -->
+
+            <div class="footer_column">
+                <h3>Khám phá</h3>
+                <a href="index.html">Trang chủ</a>
+                <a href="intro.html">Giới thiệu</a>
+                <a href="products.html">Sản phẩm</a>
+                <a href="contact.html">Liên hệ</a>
+            </div>
+
+            <!-- Policy -->
+
+            <div class="footer_column">
+                <h3>Chính sách</h3>
+                <a href="policy.html">Giao hàng</a>
+                <a href="policy.html">Đổi trả</a>
+                <a href="policy.html">Bảo mật</a>
+                <a href="policy.html">Điều khoản</a>
+            </div>
+
+            <!-- Social -->
+
+            <div class="footer_column">
+
+                <h3>Theo dõi</h3>
+
+                <a href="#">Facebook</a>
+
+                <a href="#">Instagram</a>
+
+                <a href="#">TikTok</a>
+
+                <a href="#">YouTube</a>
+
+                <h3 class="payment_title" style="margin-top: 35px; margin-bottom: 15px; font-size: 22px;">
+                    Thanh toán
+                </h3>
+
+                <div class="payment">
+                    <img src="images/visa.webp" alt="Visa">
+                    <img src="images/mastercard.png" alt="MasterCard">
+                    <img src="images/momo.png" alt="Momo">
+                    <img src="images/vnpay.webp" alt="VNPAY">
+                    <img src="images/zalopay.webp" alt="ZaloPay">
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <div class="footer_bottom">
+
+            © 2026 SCENTURA. All rights reserved.
+
+        </div>
+
+    </footer>
+
+    <!---------------- JAVASCRIPT ---------------->
+    <script>
+        // Điều khiển navbar scrolled
+        window.addEventListener("scroll", function () {
+            const navbar = document.querySelector(".navbar");
+            if (window.scrollY > 1) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        });
+
+        /*================ REUSABLE INFINITE CIRCULAR SLIDER SCRIPT ================*/
+
+        function initInfiniteSlider(config) {
+            const rollsContainer = document.querySelector(config.trackSelector);
+            const prevBtn = document.querySelector(config.prevBtnSelector);
+            const nextBtn = document.querySelector(config.nextBtnSelector);
+            const dots = document.querySelectorAll(config.dotsSelector + " .dot");
+            const wrapper = document.querySelector(config.wrapperSelector);
+            const slidesToShow = config.slidesToShow || 1;
+
+            if (!rollsContainer || !prevBtn || !nextBtn) return;
+
+            const originalRolls = Array.from(rollsContainer.children);
+            const totalOriginal = originalRolls.length;
+
+            if (totalOriginal === 0) return;
+
+            // Clone slide đầu và slide cuối theo số lượng slidesToShow để tạo vòng lặp vô tận
+            for (let i = 0; i < slidesToShow; i++) {
+                const firstClone = originalRolls[i].cloneNode(true);
+                const lastClone = originalRolls[totalOriginal - 1 - i].cloneNode(true);
+
+                firstClone.classList.add("clone");
+                lastClone.classList.add("clone");
+
+                rollsContainer.appendChild(firstClone);
+                rollsContainer.insertBefore(lastClone, rollsContainer.firstChild);
+            }
+
+            let currentIndex = slidesToShow;
+            let isTransitioning = false;
+            const slideStepPercent = 100 / slidesToShow;
+
+            rollsContainer.style.transition = "none";
+            rollsContainer.style.transform = `translateX(-${currentIndex * slideStepPercent}%)`;
+
+            function updateDots(realIndex) {
+                dots.forEach((dot, idx) => {
+                    if (idx === realIndex) {
+                        dot.classList.add("active");
+                    } else {
+                        dot.classList.remove("active");
+                    }
+                });
+            }
+
+            function moveToSlide(index) {
+                if (isTransitioning) return;
+                isTransitioning = true;
+
+                currentIndex = index;
+                rollsContainer.style.transition = "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)";
+                rollsContainer.style.transform = `translateX(-${currentIndex * slideStepPercent}%)`;
+
+                let realIndex = (currentIndex - slidesToShow + totalOriginal) % totalOriginal;
+                updateDots(realIndex);
+            }
+
+            rollsContainer.addEventListener("transitionend", () => {
+                isTransitioning = false;
+                const allRolls = rollsContainer.querySelectorAll(".roll");
+
+                if (currentIndex >= allRolls.length - slidesToShow) {
+                    rollsContainer.style.transition = "none";
+                    currentIndex = slidesToShow;
+                    rollsContainer.style.transform = `translateX(-${currentIndex * slideStepPercent}%)`;
+                }
+
+                if (currentIndex < slidesToShow) {
+                    rollsContainer.style.transition = "none";
+                    currentIndex = allRolls.length - (slidesToShow * 2);
+                    rollsContainer.style.transform = `translateX(-${currentIndex * slideStepPercent}%)`;
+                }
+            });
+
+            // Quản lý tự động chuyển hình sau 5s và reset timer khi click
+            let autoRollInterval = null;
+
+            function startAutoRoll() {
+                clearInterval(autoRollInterval);
+                autoRollInterval = setInterval(() => {
+                    moveToSlide(currentIndex + 1);
+                }, 5000);
+            }
+
+            function resetAutoRoll() {
+                startAutoRoll();
+            }
+
+            // Kích hoạt đếm ngược 5 giây
+            startAutoRoll();
+
+            nextBtn.addEventListener("click", () => {
+                moveToSlide(currentIndex + 1);
+                resetAutoRoll();
+            });
+
+            prevBtn.addEventListener("click", () => {
+                moveToSlide(currentIndex - 1);
+                resetAutoRoll();
+            });
+
+            dots.forEach((dot) => {
+                dot.addEventListener("click", (e) => {
+                    const targetRealIndex = parseInt(e.target.getAttribute("data-index"));
+                    moveToSlide(targetRealIndex + slidesToShow);
+                    resetAutoRoll();
+                });
+            });
+
+            if (wrapper) {
+                wrapper.addEventListener("mouseenter", () => clearInterval(autoRollInterval));
+                wrapper.addEventListener("mouseleave", () => {
+                    startAutoRoll();
+                });
+            }
+        }
+
+        // Kích hoạt Slider 0: Product Banner Rolls (1 slide at a time)
+        initInfiniteSlider({
+            trackSelector: "#RollsTrack",
+            prevBtnSelector: "#RollPrev",
+            nextBtnSelector: "#RollNext",
+            dotsSelector: "#RollsDots",
+            wrapperSelector: "#RollsSection .rolls_container",
+            slidesToShow: 1
+        });
+
+        // Kích hoạt Slider 0.5: Trial Box Rolls (2 slides at a time)
+        initInfiniteSlider({
+            trackSelector: "#topRollsTrack",
+            prevBtnSelector: "#topRollPrev",
+            nextBtnSelector: "#topRollNext",
+            dotsSelector: "#topRollsDots",
+            wrapperSelector: "#trialSection .rolls_container",
+            slidesToShow: 2
+        });
+
+        // Kích hoạt Slider 1: Workday Collection
+        initInfiniteSlider({
+            trackSelector: "#workdayTrack",
+            prevBtnSelector: "#workdayPrev",
+            nextBtnSelector: "#workdayNext",
+            dotsSelector: "#workdayDots",
+            wrapperSelector: "#workdaySection .rolls_container",
+            slidesToShow: 2
+        });
+
+        // Kích hoạt Slider 2: Campus Collection
+        initInfiniteSlider({
+            trackSelector: "#campusTrack",
+            prevBtnSelector: "#campusPrev",
+            nextBtnSelector: "#campusNext",
+            dotsSelector: "#campusDots",
+            wrapperSelector: "#campusSection .rolls_container",
+            slidesToShow: 2
+        });
+
+        // Kích hoạt Slider 3: Commute & Outdoor Collection
+        initInfiniteSlider({
+            trackSelector: "#commuteTrack",
+            prevBtnSelector: "#commutePrev",
+            nextBtnSelector: "#commuteNext",
+            dotsSelector: "#commuteDots",
+            wrapperSelector: "#commuteSection .rolls_container",
+            slidesToShow: 2
+        });
+
+        // Kích hoạt Slider 4: Social Confidence Collection
+        initInfiniteSlider({
+            trackSelector: "#socialTrack",
+            prevBtnSelector: "#socialPrev",
+            nextBtnSelector: "#socialNext",
+            dotsSelector: "#socialDots",
+            wrapperSelector: "#socialSection .rolls_container",
+            slidesToShow: 2
+        });
+
+        // Kích hoạt Slider 5: Sensitive Collection
+        initInfiniteSlider({
+            trackSelector: "#sensitiveTrack",
+            prevBtnSelector: "#sensitivePrev",
+            nextBtnSelector: "#sensitiveNext",
+            dotsSelector: "#sensitiveDots",
+            wrapperSelector: "#sensitiveSection .rolls_container",
+            slidesToShow: 2
+        });
+
+        // Tạo nút Thêm vào giỏ hàng động bên cạnh thông tin sản phẩm và gắn sự kiện click
+        document.querySelectorAll('.product_visible_info').forEach(info => {
+            const htmlContent = info.innerHTML;
+            info.innerHTML = `
+                <div class="product_visible_text">
+                    ${htmlContent}
+                </div>
+                <button class="add_to_cart_btn" aria-label="Thêm vào giỏ hàng">
+                    <img src="images/cart.png" alt="Cart">
+                </button>
+            `;
+
+            const btn = info.querySelector('.add_to_cart_btn');
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const token = localStorage.getItem('scentura_token');
+                if (!token) {
+                    if (typeof showToast === 'function') {
+                        showToast('Vui lòng đăng nhập để sử dụng giỏ hàng!', 'error');
+                    } else {
+                        alert('Vui lòng đăng nhập để sử dụng giỏ hàng!');
+                    }
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 1500);
+                    return;
+                }
+
+                const roll = info.closest('.roll');
+                const name = info.querySelector('h5').textContent.trim();
+                const price = info.querySelector('.visible_price').textContent.trim();
+                const imgEl = roll ? roll.querySelector('.product_card_box img') : null;
+                const image = imgEl ? imgEl.getAttribute('src') : '';
+
+                if (typeof window.addToScenturaCart === 'function') {
+                    window.addToScenturaCart({ name, price, image });
+                }
+            });
+        });
+    </script>
+
+    <script src="auth.js"></script>
+</body>
+</html>

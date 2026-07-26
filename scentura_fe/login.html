@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập & Đăng ký | SCENTURA</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-green: #1e3f22;
+            --primary-green-hover: #152c18;
+            --light-green-bg: #eaf1eb;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --border-color: rgba(30, 63, 34, 0.15);
+            --text-dark: #1e3f22;
+            --text-muted: #6b7e6f;
+            --error-red: #ff4d4d;
+            --success-green: #2ecc71;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: radial-gradient(circle at center, #f9fbf9 0%, var(--light-green-bg) 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Decorative background elements */
+        .bg-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(30, 63, 34, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
+            top: 10%;
+            left: 10%;
+            z-index: 1;
+            pointer-events: none;
+            border-radius: 50%;
+        }
+
+        .bg-glow-right {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(30, 63, 34, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
+            bottom: 5%;
+            right: 5%;
+            z-index: 1;
+            pointer-events: none;
+            border-radius: 50%;
+        }
+
+        /* Back to homepage button */
+        .back-home {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            z-index: 10;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .back-home:hover {
+            color: var(--primary-green);
+            transform: translateX(-4px);
+        }
+
+        .back-home svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* Brand Title */
+        .brand-logo {
+            font-family: 'Lora', serif;
+            font-size: 32px;
+            letter-spacing: 6px;
+            color: var(--text-dark);
+            text-decoration: none;
+            margin-bottom: 25px;
+            z-index: 10;
+            text-align: center;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .brand-logo span {
+            color: #2ecc71;
+        }
+
+        /* Main Container */
+        .auth-container {
+            width: 100%;
+            max-width: 450px;
+            padding: 20px;
+            z-index: 10;
+        }
+
+        /* Glassmorphism Card */
+        .auth-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 40px 30px;
+            box-shadow: 0 15px 35px rgba(30, 63, 34, 0.08);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        /* Tabs for Switching forms */
+        .auth-tabs {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-green);
+            position: relative;
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-green);
+        }
+
+        .form-wrapper{
+            width:100%;
+            overflow:hidden;
+        }
+
+        .form-slider{
+            display:flex;
+            width:200%;
+            transition:transform .5s ease;
+        }
+
+        .auth-form{
+            flex:0 0 50%;
+            width:50%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Hide elements during animation */
+        .form-slider.show-register {
+            transform:translateX(-50%);
+        }
+
+        /* Input Group */
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: relative;
+        }
+
+        .input-group label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .input-field {
+            width: 100%;
+            background: #ffffff;
+            border: 1px solid rgba(30, 63, 34, 0.2);
+            border-radius: 8px;
+            padding: 14px 16px;
+            color: var(--text-dark);
+            font-family: inherit;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .input-field:focus {
+            border-color: var(--primary-green);
+            background: #ffffff;
+            box-shadow: 0 0 10px rgba(30, 63, 34, 0.1);
+        }
+
+        /* Password visibility toggle icon */
+        .password-toggle {
+            position: absolute;
+            right: 16px;
+            bottom: 13px;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .password-toggle:hover {
+            color: var(--primary-green);
+        }
+
+        /* Button Styling */
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #2ecc71 0%, var(--primary-green) 100%);
+            border: none;
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 5px 15px rgba(30, 63, 34, 0.2);
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(30, 63, 34, 0.3);
+            filter: brightness(1.1);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        /* Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 15px 0;
+            color: var(--text-muted);
+            font-size: 13px;
+            width: 100%;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid rgba(30, 63, 34, 0.15);
+        }
+
+        .divider:not(:empty)::before {
+            margin-right: .5em;
+        }
+
+        .divider:not(:empty)::after {
+            margin-left: .5em;
+        }
+
+        /* Google button */
+        .social-login-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .btn-google {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            max-width: 250px;
+            background: #ffffff;
+            border: 1px solid rgba(30, 63, 34, 0.2);
+            color: var(--text-dark);
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .btn-google:hover {
+            background: #f9fbf9;
+            border-color: var(--primary-green);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(30, 63, 34, 0.05);
+        }
+
+        .google-icon {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Footers inside forms */
+        .form-footer {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 10px;
+        }
+
+        .form-footer a {
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .form-footer a:hover {
+            color: var(--primary-green-hover);
+            text-decoration: underline;
+        }
+
+        /* Notification Toast */
+        .toast {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateY(-100px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast-success {
+            background-color: var(--success-green);
+            color: white;
+        }
+
+        .toast-error {
+            background-color: var(--error-red);
+            color: white;
+        }
+
+        /* Footer copy */
+        .copy {
+            margin-top: 40px;
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            z-index: 10;
+        }
+
+        /* Loading spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            border-top-color: #000;
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 10px;
+            vertical-align: middle;
+            display: none;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 480px) {
+            .auth-card {
+                padding: 30px 20px;
+            }
+            .brand-logo {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+    <div class="bg-glow-right"></div>
+
+    <!-- Back Home Link -->
+    <a href="index.html" class="back-home">
+        <svg viewBox="0 0 24 24">
+            <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"/>
+        </svg>
+        Trang chủ
+    </a>
+
+    <!-- Logo / Brand -->
+    <a href="index.html" class="brand-logo">SCENTURA<span>.</span></a>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <!-- Tabs -->
+            <div class="auth-tabs">
+                <button id="tab-login" class="tab-btn active" onclick="switchTab('login')">Đăng Nhập</button>
+                <button id="tab-register" class="tab-btn" onclick="switchTab('register')">Đăng Ký</button>
+            </div>
+            <div class="form-wrapper">
+                <!-- Form Slider -->
+                <div class="form-slider" id="form-slider">
+                    <!-- Login Form -->
+                    <form id="login-form" class="auth-form" onsubmit="handleLogin(event)">
+                        <div class="input-group">
+                            <label for="login-username">Tên đăng nhập hoặc Email</label>
+                            <input type="text" id="login-username" class="input-field" placeholder="Nhập tên đăng nhập hoặc email..." required autocomplete="username">
+                        </div>
+                        
+                        <div class="input-group" style="position: relative;">
+                            <label for="login-password">Mật khẩu</label>
+                            <input type="password" id="login-password" class="input-field" placeholder="Nhập mật khẩu..." required autocomplete="current-password">
+                            <span class="password-toggle" onclick="togglePassword(this, 'login-password')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </span>
+                        </div>
+
+                        <div class="btn-container">
+                            <button type="submit" class="btn-submit">
+                                Đăng Nhập <span id="login-spinner" class="spinner"></span>
+                            </button>
+                        </div>
+
+                        <div class="divider">
+                            <span>Hoặc</span>
+                        </div>
+
+                        <div class="social-login-container">
+                            <button type="button" class="btn-google" onclick="handleGoogleLogin()">
+                                <svg viewBox="0 0 24 24" class="google-icon">
+                                    <path fill="#EA4335" d="M12 5.04c1.67 0 3.17.58 4.35 1.71l3.25-3.25C17.65 1.58 15.01 1 12 1 7.37 1 3.4 3.63 1.44 7.45l3.86 3C6.22 7.55 8.89 5.04 12 5.04z"/>
+                                    <path fill="#4285F4" d="M23.49 12.27c0-.81-.07-1.59-.2-2.36H12v4.51h6.44c-.28 1.47-1.11 2.71-2.36 3.55l3.67 2.85c2.14-1.97 3.74-4.87 3.74-8.55z"/>
+                                    <path fill="#FBBC05" d="M5.3 14.55A7.16 7.16 0 0 1 4.9 12c0-.89.15-1.74.4-2.55L1.44 6.45C.52 8.12 0 10 0 12s.52 3.88 1.44 5.55l3.86-3z"/>
+                                    <path fill="#34A853" d="M12 18.96c-3.11 0-5.78-2.51-6.7-5.41l-3.86 3C3.4 20.37 7.37 23 12 23c3.08 0 5.67-1.02 7.56-2.77l-3.67-2.85c-1.03.69-2.35 1.58-3.89 1.58z"/>
+                                </svg>
+                                <span>Đăng nhập bằng Google</span>
+                            </button>
+                        </div>
+
+                        <div class="form-footer">
+                            Chưa có tài khoản? <a href="#" onclick="switchTab('register'); event.preventDefault();">Đăng ký ngay</a>
+                        </div>
+                    </form>
+
+                    <!-- Register Form -->
+                    <form id="register-form" class="auth-form" onsubmit="handleRegister(event)">
+                        <div class="input-group">
+                            <label for="reg-username">Tên đăng nhập</label>
+                            <input type="text" id="reg-username" class="input-field" placeholder="Ít nhất 3 ký tự..." required autocomplete="username">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="reg-email">Địa chỉ Email</label>
+                            <input type="email" id="reg-email" class="input-field" placeholder="example@gmail.com" required autocomplete="email">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="reg-phone">Số điện thoại</label>
+                            <input type="tel" id="reg-phone" class="input-field" placeholder="Ví dụ: 0987654321" required autocomplete="tel">
+                        </div>
+
+                        <div class="input-group" style="position: relative;">
+                            <label for="reg-password">Mật khẩu</label>
+                            <input type="password" id="reg-password" class="input-field" placeholder="Ít nhất 6 ký tự..." required autocomplete="new-password">
+                            <span class="password-toggle" onclick="togglePassword(this, 'reg-password')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </span>
+                        </div>
+
+                        <div class="input-group" style="position: relative;">
+                            <label for="reg-confirm-password">Xác nhận mật khẩu</label>
+                            <input type="password" id="reg-confirm-password" class="input-field" placeholder="Nhập lại mật khẩu..." required autocomplete="new-password">
+                            <span class="password-toggle" onclick="togglePassword(this, 'reg-confirm-password')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </span>
+                        </div>
+
+                        <div class="btn-container">
+                            <button type="submit" class="btn-submit">
+                                Đăng Ký <span id="reg-spinner" class="spinner"></span>
+                            </button>
+                        </div>
+
+                        <div class="divider">
+                            <span>Hoặc</span>
+                        </div>
+
+                        <div class="social-login-container">
+                            <button type="button" class="btn-google" onclick="handleGoogleLogin()">
+                                <svg viewBox="0 0 24 24" class="google-icon">
+                                    <path fill="#EA4335" d="M12 5.04c1.67 0 3.17.58 4.35 1.71l3.25-3.25C17.65 1.58 15.01 1 12 1 7.37 1 3.4 3.63 1.44 7.45l3.86 3C6.22 7.55 8.89 5.04 12 5.04z"/>
+                                    <path fill="#4285F4" d="M23.49 12.27c0-.81-.07-1.59-.2-2.36H12v4.51h6.44c-.28 1.47-1.11 2.71-2.36 3.55l3.67 2.85c2.14-1.97 3.74-4.87 3.74-8.55z"/>
+                                    <path fill="#FBBC05" d="M5.3 14.55A7.16 7.16 0 0 1 4.9 12c0-.89.15-1.74.4-2.55L1.44 6.45C.52 8.12 0 10 0 12s.52 3.88 1.44 5.55l3.86-3z"/>
+                                    <path fill="#34A853" d="M12 18.96c-3.11 0-5.78-2.51-6.7-5.41l-3.86 3C3.4 20.37 7.37 23 12 23c3.08 0 5.67-1.02 7.56-2.77l-3.67-2.85c-1.03.69-2.35 1.58-3.89 1.58z"/>
+                                </svg>
+                                <span>Đăng ký bằng Google</span>
+                            </button>
+                        </div>
+
+                        <div class="form-footer">
+                            Đã có tài khoản? <a href="#" onclick="switchTab('login'); event.preventDefault();">Đăng nhập</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="copy">&copy; 2026 SCENTURA PERFUME. All rights reserved.</div>
+
+    <!-- Auth logic scripts -->
+    <script>
+        // Dynamic API Base URL detection
+        const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? ''
+            : 'https://scentura-be.onrender.com';
+
+        // Tab switching logic
+        function switchTab(tab) {
+            const slider = document.getElementById('form-slider');
+            const tabLogin = document.getElementById('tab-login');
+            const tabRegister = document.getElementById('tab-register');
+
+            if (tab === 'register') {
+                slider.classList.add('show-register');
+                tabRegister.classList.add('active');
+                tabLogin.classList.remove('active');
+            } else {
+                slider.classList.remove('show-register');
+                tabLogin.classList.add('active');
+                tabRegister.classList.remove('active');
+            }
+        }
+
+        // Toggle password visibility
+        function togglePassword(el, id) {
+            const input = document.getElementById(id);
+            if (input.type === 'password') {
+                input.type = 'text';
+                el.innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;">
+                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                        <line x1="1" y1="1" x2="23" y2="23"></line>
+                    </svg>
+                `;
+            } else {
+                input.type = 'password';
+                el.innerHTML = `
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                `;
+            }
+        }
+
+        // Toast message display
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast show';
+            if (type === 'error') {
+                toast.classList.add('toast-error');
+            } else {
+                toast.classList.add('toast-success');
+            }
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+
+        // Handle Login Submission
+        async function handleLogin(e) {
+            e.preventDefault();
+            const usernameOrEmail = document.getElementById('login-username').value.trim();
+            const password = document.getElementById('login-password').value;
+            const spinner = document.getElementById('login-spinner');
+
+            spinner.style.display = 'inline-block';
+
+            try {
+                const response = await fetch(API_BASE_URL + '/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ usernameOrEmail, password })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || 'Đăng nhập thất bại.');
+                }
+
+                showToast(data.message || 'Đăng nhập thành công!');
+                
+                // Store JWT and user info
+                localStorage.setItem('scentura_token', data.token);
+                localStorage.setItem('scentura_user', JSON.stringify(data.user));
+
+                // Redirect to home page after a small delay
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1200);
+
+            } catch (err) {
+                showToast(err.message, 'error');
+            } finally {
+                spinner.style.display = 'none';
+            }
+        }
+
+        // Handle Register Submission
+        async function handleRegister(e) {
+            e.preventDefault();
+            const username = document.getElementById('reg-username').value.trim();
+            const email = document.getElementById('reg-email').value.trim();
+            const phone = document.getElementById('reg-phone').value.trim();
+            const password = document.getElementById('reg-password').value;
+            const confirmPassword = document.getElementById('reg-confirm-password').value;
+            const spinner = document.getElementById('reg-spinner');
+
+            // Client side validation
+            if (password !== confirmPassword) {
+                showToast('Mật khẩu nhập lại không khớp.', 'error');
+                return;
+            }
+
+            spinner.style.display = 'inline-block';
+
+            try {
+                const response = await fetch(API_BASE_URL + '/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, email, phone, password })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || 'Đăng ký thất bại.');
+                }
+
+                showToast('Đăng ký tài khoản thành công! Đang chuyển sang đăng nhập...');
+                
+                // Reset form
+                document.getElementById('register-form').reset();
+
+                // Switch to login tab and prefill username
+                setTimeout(() => {
+                    switchTab('login');
+                    document.getElementById('login-username').value = username;
+                    document.getElementById('login-password').focus();
+                }, 2000);
+
+            } catch (err) {
+                showToast(err.message, 'error');
+            } finally {
+                spinner.style.display = 'none';
+            }
+        }
+
+        // Handle Google Sign-In
+        function handleGoogleLogin() {
+            const width = 500;
+            const height = 600;
+            const left = (screen.width / 2) - (width / 2);
+            const top = (screen.height / 2) - (height / 2);
+            
+            // Open mock Google Sign-In popup
+            const popup = window.open('google_login.html', 'GoogleLoginPopup', `width=${width},height=${height},top=${top},left=${left}`);
+            
+            // Setup listener for response
+            const messageListener = async (event) => {
+                // Ensure origin matches
+                if (event.origin !== window.location.origin) return;
+                
+                if (event.data && event.data.type === 'google-login-success') {
+                    window.removeEventListener('message', messageListener);
+                    
+                    const { name, email, avatarUrl } = event.data;
+                    
+                    try {
+                        const response = await fetch(API_BASE_URL + '/api/auth/google-login', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ name, email, avatarUrl })
+                        });
+                        
+                        const data = await response.json();
+                        if (!response.ok) throw new Error(data.message || 'Đăng nhập Google thất bại.');
+                        
+                        showToast(data.message || 'Đăng nhập bằng Google thành công!');
+                        
+                        // Save token & user
+                        localStorage.setItem('scentura_token', data.token);
+                        localStorage.setItem('scentura_user', JSON.stringify(data.user));
+                        
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 1200);
+                        
+                    } catch (err) {
+                        showToast(err.message, 'error');
+                    }
+                }
+            };
+            
+            window.addEventListener('message', messageListener);
+        }
+    </script>
+</body>
+</html>
