@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
     <>
       {/* HEADER SALE */}
       <div className="header_sale">
-        <h3 style={{textTransform: uppercase}}> Mua Càng Nhiều, Ưu Đãi Càng Lớn với Combo Deals của SCENTURA</h3>
+        <h3 style={{textTransform: uppercase}}> MUA CÀNG NHIỀU, ƯU ĐÃI CÀNG LỚN VỚI COMBO DEALS CỦA SCENTURA</h3>
         <button onClick={() => navigate('/products')}>NHẬN ƯU ĐÃI</button>
       </div>
 
