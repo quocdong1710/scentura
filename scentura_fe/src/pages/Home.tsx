@@ -171,7 +171,7 @@ const Home: React.FC = () => {
             <div className="hdsd_info" style={{ textAlign: 'center' }}>
               <img src="images/water.png" alt="Thấm hút" style={{ width: '90px', marginBottom: '15px' }} />
               <h4 style={{ fontSize: '18px', fontWeight: 500, color: '#1e3f22', marginBottom: '10px' }}>Thấm hút</h4>
-              <p style={{ fontSize: '16px', color: '#666', lineHeight: '1.6' }}>
+              <p style={{ fontSize: '16px', color: '#666', lineHeight: '1.6', textAlign: 'justify' }}>
                 Được đặt kín đáo bên trong áo, lớp thấm hút giúp tiếp nhận mồ hôi và độ ẩm tại khu vực dưới cánh tay, hạn chế cảm giác ẩm bí và giữ trang phục chỉn chu hơn.
               </p>
             </div>
@@ -181,7 +181,7 @@ const Home: React.FC = () => {
             <div className="hdsd_info" style={{ textAlign: 'center' }}>
               <img src="images/ring.png" alt="Cảnh báo đổi màu" style={{ width: '90px', marginBottom: '15px' }} />
               <h4 style={{ fontSize: '18px', fontWeight: 500, color: '#1e3f22', marginBottom: '10px' }}>Cảnh báo đổi màu</h4>
-              <p style={{ fontSize: '16px', color: '#666', lineHeight: '1.6' }}>
+              <p style={{ fontSize: '16px', color: '#666', lineHeight: '1.6', textAlign: 'justify' }}>
                 Khi độ ẩm trên miếng dán tích tụ đến một mức nhất định, lớp chỉ thị có thể chuyển màu như một tín hiệu nhẹ nhàng, nhắc bạn chủ động kiểm tra.
               </p>
             </div>
@@ -191,7 +191,7 @@ const Home: React.FC = () => {
             <div className="hdsd_info" style={{ textAlign: 'center' }}>
               <img src="images/wind.png" alt="Tỏa hương nhẹ" style={{ width: '90px', marginBottom: '15px' }} />
               <h4 style={{ fontSize: '18px', fontWeight: 500, color: '#1e3f22', marginBottom: '10px' }}>Tỏa hương thơm nhẹ</h4>
-              <p style={{ fontSize: '16px', color: '#666', lineHeight: '1.6' }}>
+              <p style={{ fontSize: '16px', color: '#666', lineHeight: '1.6', textAlign: 'justify' }}>
                 Các vi nang hương được kích hoạt bởi chuyển động, lan tỏa hương thơm vừa đủ và duy trì cảm giác sạch sẽ, dễ chịu trong suốt thời gian sử dụng.
               </p>
             </div>
