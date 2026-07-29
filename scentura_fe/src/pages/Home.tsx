@@ -208,7 +208,7 @@ const Home: React.FC = () => {
         </div>
         <div id="featuredRollsSection" style={{ padding: '40px 20px', display: 'flex', gap: '50px', alignItems: 'center', maxWidth: '1200px', margin: '0 auto' }}>
           <div className="featured_left_col" style={{ flex: '1' }}>
-            <div style={{ fontSize: '15px', color: '#555', lineHeight: '1.7', display: 'flex', flexDirection: 'column', gap: '15px' }}>
+            <div style={{ fontSize: '15px', color: '#555', lineHeight: '1.7', display: 'flex', flexDirection: 'column', gap: '15px', textAlign: 'justify' }}>
               <p>Chúng tôi tin rằng chăm sóc cá nhân không nên bắt đầu từ sự e ngại về cơ thể.</p>
               <p>Một giải pháp phù hợp không cần khiến bạn cảm thấy mình đang che giấu một khuyết điểm. Nó chỉ cần hiện diện đúng lúc, hoạt động đủ kín đáo và giúp bạn tiếp tục ngày dài với cảm giác an tâm hơn.</p>
               <p>Scentura được phát triển như một phụ kiện chăm sóc cá nhân hiện đại, nhẹ nhàng trong cách sử dụng, tinh tế trong cách hiện diện và thiết thực trong từng khoảnh khắc.</p>

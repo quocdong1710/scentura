@@ -93,6 +93,7 @@ const Products: React.FC = () => {
           <img src="images/prd_rolls3.png" alt="Roll 3" style={{ width: '100%', height: 'auto', display: 'block' }} />
           <img src="images/prd_rolls4.png" alt="Roll 4" style={{ width: '100%', height: 'auto', display: 'block' }} />
           <img src="images/prd_rolls5.png" alt="Roll 5" style={{ width: '100%', height: 'auto', display: 'block' }} />
+          <img src="images/prd_rolls6.png" alt="Roll 6" style={{ width: '100%', height: 'auto', display: 'block' }} />
         </InfiniteSlider>
       </section>
 
