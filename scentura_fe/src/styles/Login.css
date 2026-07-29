@@ -68,6 +68,7 @@
 
 /* Brand Title */
 .brand-logo {
+  display: block;
   font-family: 'Lora', serif;
   font-size: 32px;
   letter-spacing: 6px;
