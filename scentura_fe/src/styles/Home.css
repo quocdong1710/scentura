@@ -407,8 +407,7 @@
 
 .story_img {
   width: 100%;
-  height: 100vh; /* fit full height of viewport */
-  object-fit: cover;
+  height: auto;
   display: block;
 }
 

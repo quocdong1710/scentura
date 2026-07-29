@@ -20,7 +20,7 @@ const Contact: React.FC = () => {
                 <div className="info_icon">📍</div>
                 <div className="info_text">
                   <h3>Địa chỉ văn phòng</h3>
-                  <p>2 Mai Thị Lựu, Phường Đa Kao, Quận 1, TP. Hồ Chí Minh, Việt Nam</p>
+                  <p>2 Mai Thị Lựu, Phường Sài Gòn, TP. Hồ Chí Minh, Việt Nam</p>
                 </div>
               </div>
 

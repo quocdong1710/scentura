@@ -286,7 +286,7 @@ const Home: React.FC = () => {
             className="story_img" 
             src="images/story_img.jpg" 
             alt="The Story" 
-            style={{ width: '100%', height: '100vh', objectFit: 'cover', display: 'block' }} 
+            style={{ width: '100%', height: 'auto', display: 'block' }} 
           />
         </div>
       </section>
