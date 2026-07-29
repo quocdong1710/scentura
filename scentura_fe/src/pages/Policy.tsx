@@ -193,7 +193,7 @@ const Policy: React.FC = () => {
         <div className="support_box_beige">
           <h3>Cần Scentura hỗ trợ?</h3>
           <p>Mỗi phản hồi đều là một phần giúp chúng tôi chăm chút trải nghiệm tốt hơn.</p>
-          <a href="https://forms.gle/JuWAKvnHouEYf94y8" target="_blank" rel="noopener noreferrer" className="support_btn">LIÊN HỆ SCENTURA</a>
+          <Link to="/contact" target="_blank" rel="noopener noreferrer" className="support_btn">LIÊN HỆ SCENTURA</Link>
         </div>
       </div>
     </div>
