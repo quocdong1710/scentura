@@ -174,7 +174,7 @@ const Login: React.FC = () => {
 
       <div className="auth-container">
         {/* Brand Logo */}
-        <Link to="/" className="brand-logo" style={{text-align:'center'}}>
+        <Link to="/" className="brand-logo">
           SCENTURA<span>.</span>
         </Link>
 
