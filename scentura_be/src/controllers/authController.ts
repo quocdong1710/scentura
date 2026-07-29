@@ -163,6 +163,64 @@ export const getMe = async (req: AuthenticatedRequest, res: Response) => {
   }
 };
 
+export const findOrCreateGoogleUser = async (name: string, email: string, avatarUrl?: string) => {
+  // Check if user already exists by email
+  let user = await dbGet<UserRow>(
+    'SELECT * FROM users WHERE email = ?',
+    [email]
+  );
+
+  if (!user) {
+    // Create a unique username from Google display name
+    const generateUsername = (rawName: string): string => {
+      let clean = rawName.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      clean = clean.toLowerCase().replace(/[^a-z0-9]/g, '_').replace(/_+/g, '_');
+      clean = clean.replace(/^_+|_+$/g, '');
+      return clean || 'google_user';
+    };
+
+    let username = generateUsername(name);
+    let existingUserByUsername = await dbGet<UserRow>(
+      'SELECT id FROM users WHERE username = ?',
+      [username]
+    );
+
+    let counter = 1;
+    const baseUsername = username;
+    while (existingUserByUsername) {
+      username = `${baseUsername}_${counter}`;
+      existingUserByUsername = await dbGet<UserRow>(
+        'SELECT id FROM users WHERE username = ?',
+        [username]
+      );
+      counter++;
+    }
+
+    // Create a random password for security & hash it (since password_hash is NOT NULL)
+    const randomPassword = Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2);
+    const salt = await bcrypt.genSalt(10);
+    const passwordHash = await bcrypt.hash(randomPassword, salt);
+
+    // Insert new user
+    const result = await dbRun(
+      'INSERT INTO users (username, email, phone, password_hash, avatar_url) VALUES (?, ?, ?, ?, ?)',
+      [username, email, 'Google Account', passwordHash, avatarUrl || null]
+    );
+
+    // Retrieve newly created user
+    user = await dbGet<UserRow>(
+      'SELECT * FROM users WHERE id = ?',
+      [result.id]
+    );
+  } else if (avatarUrl && user.avatar_url !== avatarUrl) {
+    // Update avatar if it changed/was added
+    await dbRun('UPDATE users SET avatar_url = ? WHERE id = ?', [avatarUrl, user.id]);
+    user.avatar_url = avatarUrl;
+  }
+
+  return user;
+};
+
 export const googleLogin = async (req: Request, res: Response) => {
   const { name, email, avatarUrl } = req.body;
 
@@ -171,59 +229,7 @@ export const googleLogin = async (req: Request, res: Response) => {
   }
 
   try {
-    // Check if user already exists by email
-    let user = await dbGet<UserRow>(
-      'SELECT * FROM users WHERE email = ?',
-      [email]
-    );
-
-    if (!user) {
-      // Create a unique username from Google display name
-      const generateUsername = (rawName: string): string => {
-        let clean = rawName.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        clean = clean.toLowerCase().replace(/[^a-z0-9]/g, '_').replace(/_+/g, '_');
-        clean = clean.replace(/^_+|_+$/g, '');
-        return clean || 'google_user';
-      };
-
-      let username = generateUsername(name);
-      let existingUserByUsername = await dbGet<UserRow>(
-        'SELECT id FROM users WHERE username = ?',
-        [username]
-      );
-
-      let counter = 1;
-      const baseUsername = username;
-      while (existingUserByUsername) {
-        username = `${baseUsername}_${counter}`;
-        existingUserByUsername = await dbGet<UserRow>(
-          'SELECT id FROM users WHERE username = ?',
-          [username]
-        );
-        counter++;
-      }
-
-      // Create a random password for security & hash it (since password_hash is NOT NULL)
-      const randomPassword = Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2);
-      const salt = await bcrypt.genSalt(10);
-      const passwordHash = await bcrypt.hash(randomPassword, salt);
-
-      // Insert new user
-      const result = await dbRun(
-        'INSERT INTO users (username, email, phone, password_hash, avatar_url) VALUES (?, ?, ?, ?, ?)',
-        [username, email, 'Google Account', passwordHash, avatarUrl || null]
-      );
-
-      // Retrieve newly created user
-      user = await dbGet<UserRow>(
-        'SELECT * FROM users WHERE id = ?',
-        [result.id]
-      );
-    } else if (avatarUrl && user.avatar_url !== avatarUrl) {
-      // Update avatar if it changed/was added
-      await dbRun('UPDATE users SET avatar_url = ? WHERE id = ?', [avatarUrl, user.id]);
-      user.avatar_url = avatarUrl;
-    }
+    const user = await findOrCreateGoogleUser(name, email, avatarUrl);
 
     if (!user) {
       return res.status(500).json({ message: 'Không thể tạo hoặc truy xuất thông tin tài khoản.' });
@@ -251,6 +257,30 @@ export const googleLogin = async (req: Request, res: Response) => {
   } catch (error: any) {
     console.error('Lỗi khi đăng nhập bằng Google:', error.message);
     return res.status(500).json({ message: 'Có lỗi xảy ra trên máy chủ.' });
+  }
+};
+
+export const googleCallback = async (req: Request, res: Response) => {
+  const user = req.user as UserRow;
+
+  if (!user) {
+    return res.redirect(`${process.env.FRONTEND_URL || 'http://localhost'}/login?error=auth_failed`);
+  }
+
+  try {
+    // Sign JWT
+    const token = jwt.sign(
+      { id: user.id, username: user.username, email: user.email },
+      JWT_SECRET,
+      { expiresIn: '24h' }
+    );
+
+    // Redirect user back to Frontend with the token
+    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost';
+    return res.redirect(`${frontendUrl}/login-success?token=${token}`);
+  } catch (error: any) {
+    console.error('Lỗi trong callback Google OAuth:', error.message);
+    return res.redirect(`${process.env.FRONTEND_URL || 'http://localhost'}/login?error=server_error`);
   }
 };
 

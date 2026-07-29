@@ -9,6 +9,8 @@ services:
       - "5000:5000"
     volumes:
       - sqlite-data:/app/data
+    env_file:
+      - .env
     environment:
       - PORT=5000
       - JWT_SECRET=scentura_super_secret_key_123!

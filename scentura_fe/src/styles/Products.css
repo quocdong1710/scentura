@@ -1,0 +1,437 @@
+/* Products Page Specific Styles */
+
+.search_wrapper {
+  max-width: 600px;
+  margin: 30px auto 40px;
+  padding: 0 20px;
+}
+
+.search_box {
+  display: flex;
+  background: white;
+  border: 1px solid rgba(30, 63, 34, 0.2);
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+}
+
+.search_box:focus-within {
+  border-color: #1e3f22;
+  box-shadow: 0 4px 20px rgba(30, 63, 34, 0.1);
+}
+
+.search_input {
+  flex: 1;
+  border: none;
+  padding: 14px 20px;
+  font-size: 15px;
+  outline: none;
+  color: #1e3f22;
+  background: transparent;
+}
+
+.search_btn {
+  background: none;
+  border: none;
+  padding: 0 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1e3f22;
+}
+
+.search_btn svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.page_header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 50px;
+  padding: 0 20px;
+}
+
+.page_header h1 {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 38px;
+  color: #1e3f22;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.page_header p {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.7;
+}
+
+/*================ COLLECTIONS ================*/
+.collection_section {
+  background: #fbf9f4;
+  padding: 80px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto 40px;
+  gap: 50px;
+  box-sizing: border-box;
+  border-radius: 24px;
+}
+
+.collection_section:nth-child(even) {
+  /* flex-direction: row-reverse; */
+  background: #f4f7f4;
+}
+
+.collection_section .rolls_container {
+  flex: 1.2;
+  width: 100%;
+  max-width: 780px;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  margin: 0;
+  overflow: hidden;
+}
+
+.collection_section .roll {
+  min-width: 50%;
+  flex: 0 0 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+
+.add_to_cart_btn {
+  background: #ffffff;
+  border: 1px solid #1e3f22;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin: 5px auto 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add_to_cart_btn:hover {
+  background: #1e3f22;
+  border-color: #1e3f22;
+  transform: scale(1.08);
+}
+
+.add_to_cart_btn:hover svg {
+  stroke: #ffffff;
+}
+
+.add_to_cart_btn svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: #1e3f22;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.3s ease;
+}
+
+.product_visible_info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 14px;
+  width: 100%;
+}
+
+.product_visible_text {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.product_visible_info h5 {
+  margin: 0;
+  font-size: 15px;
+  color: #1e3f22;
+  font-weight: 700;
+  font-family: 'Lora', Georgia, serif;
+  
+}
+
+.product_visible_info .original_price {
+  font-size: 12px;
+  color: #a0a0a0;
+  text-decoration: line-through;
+  font-family: sans-serif;
+}
+
+.product_visible_info .visible_price {
+  font-size: 14px;
+  color: #b89240;
+  font-weight: 700;
+  font-family: sans-serif;
+}
+
+@media (max-width: 992px) {
+  .collection_section {
+    flex-direction: column !important;
+    padding: 50px 20px;
+    gap: 30px;
+  }
+  
+  .collection_section .rolls_container {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .collection_section .roll {
+    min-width: 100%;
+    flex: 0 0 100%;
+  }
+}
+
+/* Custom styling for top slider to make sure images show completely */
+#RollsSection .roll img {
+  width: 100%;
+  height: auto;
+  max-height: none !important;
+  object-fit: cover;
+  display: block;
+}
+
+/* Product page specific overrides for info and guide sections */
+.products_page .info_section {
+    padding: 0 0 80px 0;
+    background: #ffffff;
+}
+
+.products_page .info_section .feature_header {
+    width: 100%;
+    background: #1e3f22;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.products_page .info_section .feature_header h2 {
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: 400;
+    font-style: italic;
+    font-family: 'Lora', Georgia, serif;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.products_page .info_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    max-width: 1100px;
+    margin: 40px auto 0;
+    padding: 0 20px;
+}
+
+.products_page .info_img_box {
+    flex: 0.9;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.products_page .info_img_box img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.products_page .info_table_box,
+.products_page .info_text_box {
+    flex: 1.1;
+}
+
+.products_page .product_spec_table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Lora', Georgia, serif;
+    font-size: 14.5px;
+    color: #2c3e2e;
+}
+
+.products_page .product_spec_table th, 
+.products_page .product_spec_table td {
+    padding: 12px 18px;
+    text-align: left;
+    border-bottom: 1px solid rgba(30, 63, 34, 0.12);
+}
+
+.products_page .product_spec_table th {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 16px;
+    color: #1e3f22;
+    font-weight: 700;
+    border-bottom: 2px solid #1e3f22;
+}
+
+.products_page .product_spec_table td strong {
+    color: #1e3f22;
+    font-weight: 600;
+}
+
+.products_page .info_text_box h2 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 24px;
+    color: #1e3f22;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.products_page .info_text_box p {
+    font-size: 14.5px;
+    line-height: 1.8;
+    color: #4a5c4d;
+}
+
+.products_page .info_text_box p strong {
+    color: #1e3f22;
+    font-weight: 700;
+}
+
+/*================ HDSD SECTION (HORIZONTAL ROW) ================*/
+.products_page .hdsd_section {
+    padding: 0 0 80px 0;
+    background: #ffffff;
+    width: 100%;
+}
+
+.products_page .hdsd_section .feature_header {
+    width: 100%;
+    background: #1e3f22;
+    padding: 30px 20px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.products_page .hdsd_section .feature_header h2 {
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: 400;
+    font-style: italic;
+    font-family: 'Lora', Georgia, serif;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.products_page .hdsd_container {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    max-width: 1200px;
+    margin: 40px auto 0;
+    padding: 0 20px;
+}
+
+.products_page .hdsd_item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: #fbf9f4;
+    padding: 24px 18px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease;
+}
+
+.products_page .hdsd_item:hover {
+    transform: translateY(-5px);
+}
+
+.products_page .hdsd_img_box {
+    width: 100%;
+    max-width: 200px;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+.products_page .hdsd_img_box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.products_page .hdsd_step_header {
+    text-align: center;
+    margin-bottom: 16px;
+    width: 100%;
+}
+
+.products_page .hdsd_step_header strong {
+    display: block;
+    font-family: 'Lora', Georgia, serif;
+    font-size: 18px;
+    color: #1e3f22;
+    margin-bottom: 6px;
+    font-weight: 700;
+}
+
+.products_page .hdsd_step_header h4 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 15.5px;
+    color: #1e3f22;
+    font-weight: 700;
+    margin: 0;
+}
+
+.products_page .hdsd_step_desc {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 13.5px;
+    color: #4a5c4d;
+    line-height: 1.65;
+    margin: 0;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+@media (max-width: 992px) {
+    .products_page .info_container {
+        flex-direction: column;
+        gap: 40px;
+    }
+    .products_page .info_img_box {
+        max-width: 100%;
+    }
+    .products_page .hdsd_container {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+    .products_page .hdsd_item {
+        width: 100%;
+        max-width: 450px;
+    }
+}

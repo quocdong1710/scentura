@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập bằng tài khoản Google</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 450px;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .logo {
+            width: 75px;
+            margin-bottom: 16px;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 8px;
+        }
+        p {
+            font-size: 16px;
+            color: #5f6368;
+            margin-bottom: 30px;
+        }
+        .account-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .account-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            text-align: left;
+        }
+        .account-item:hover {
+            background-color: #f8f9fa;
+        }
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #c5a880;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 18px;
+            margin-right: 16px;
+        }
+        .avatar-google {
+            background-color: #4285F4;
+        }
+        .avatar-tester {
+            background-color: #34A853;
+        }
+        .account-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #3c4043;
+        }
+        .email {
+            font-size: 12px;
+            color: #70757a;
+        }
+        .footer {
+            font-size: 12px;
+            color: #70757a;
+            margin-top: 40px;
+            line-height: 1.5;
+        }
+        .footer a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Google Logo SVG -->
+        <svg class="logo" viewBox="0 0 24 24">
+            <path fill="#EA4335" d="M12 5.04c1.67 0 3.17.58 4.35 1.71l3.25-3.25C17.65 1.58 15.01 1 12 1 7.37 1 3.4 3.63 1.44 7.45l3.86 3C6.22 7.55 8.89 5.04 12 5.04z"/>
+            <path fill="#4285F4" d="M23.49 12.27c0-.81-.07-1.59-.2-2.36H12v4.51h6.44c-.28 1.47-1.11 2.71-2.36 3.55l3.67 2.85c2.14-1.97 3.74-4.87 3.74-8.55z"/>
+            <path fill="#FBBC05" d="M5.3 14.55A7.16 7.16 0 0 1 4.9 12c0-.89.15-1.74.4-2.55L1.44 6.45C.52 8.12 0 10 0 12s.52 3.88 1.44 5.55l3.86-3z"/>
+            <path fill="#34A853" d="M12 18.96c-3.11 0-5.78-2.51-6.7-5.41l-3.86 3C3.4 20.37 7.37 23 12 23c3.08 0 5.67-1.02 7.56-2.77l-3.67-2.85c-1.03.69-2.35 1.58-3.89 1.58z"/>
+        </svg>
+
+        <h1>Đăng nhập bằng Google</h1>
+        <p>để tiếp tục đến SCENTURA</p>
+
+        <div class="account-list">
+            <div class="account-item" onclick="selectAccount('Nguyễn Văn A', 'a.nguyen@gmail.com', 'https://lh3.googleusercontent.com/a/default-user=s120-c')">
+                <div class="avatar avatar-google">A</div>
+                <div class="account-info">
+                    <span class="name">Nguyễn Văn A</span>
+                    <span class="email">a.nguyen@gmail.com</span>
+                </div>
+            </div>
+
+            <div class="account-item" onclick="selectAccount('Scentura Tester', 'tester@scentura.com', 'https://api.dicebear.com/7.x/bottts/svg?seed=tester')">
+                <div class="avatar avatar-tester">T</div>
+                <div class="account-info">
+                    <span class="name">Scentura Tester</span>
+                    <span class="email">tester@scentura.com</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            Để tiếp tục, Google sẽ chia sẻ tên, địa chỉ email, tùy chọn ngôn ngữ và ảnh hồ sơ của bạn với Scentura.
+            Xem <a href="#">Chính sách bảo mật</a> và <a href="#">Điều khoản dịch vụ</a>.
+        </div>
+    </div>
+
+    <script>
+        function selectAccount(name, email, avatarUrl) {
+            // Send user details back to the parent window
+            if (window.opener) {
+                window.opener.postMessage({
+                    type: 'google-login-success',
+                    name: name,
+                    email: email,
+                    avatarUrl: avatarUrl
+                }, window.location.origin);
+            }
+            window.close();
+        }
+    </script>
+</body>
+</html>
